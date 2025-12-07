@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.booktracker.controllers.SearchController"
+            prefHeight="720.0" prefWidth="1280.0">
+    <top>
+        <HBox spacing="30" alignment="CENTER_LEFT" style="-fx-padding: 15; -fx-background-color: #2C3E50;">
+            <Label text="Library" style="-fx-text-fill: white; -fx-font-size: 18;" onMouseClicked="#onLibraryClicked"/>
+            <Label text="Wishlist" style="-fx-text-fill: white; -fx-font-size: 18;"
+                   onMouseClicked="#onWishlistClicked"/>
+            <Label text="Search" style="-fx-text-fill: white; -fx-font-size: 18;"
+                   onMouseClicked="#onSearchMenuClicked"/>
+
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Button text="Sign Out" onAction="#onSignOutClicked"
+                    style="-fx-background-color: #E74C3C; -fx-text-fill: white;"/>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox spacing="15" alignment="TOP_CENTER" style="-fx-padding: 20;">
+            <TextField fx:id="searchField" promptText="Search for books..." style="-fx-font-size: 16;"/>
+            <Button text="Search" onAction="#onSearchClicked"/>
+            <ListView fx:id="searchResultsListView" style="-fx-padding: 20; -fx-font-size: 14;"/>
+        </VBox>
+    </center>
+</BorderPane>

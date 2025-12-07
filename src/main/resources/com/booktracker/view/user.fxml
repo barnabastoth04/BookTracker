@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.booktracker.controllers.UserController"
+            prefHeight="720.0" prefWidth="1280.0">
+    <!-- TOP MENU BAR -->
+    <top>
+        <HBox spacing="30" style="-fx-background-color: #EEEEEE;">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+            <children>
+                <Button text="Library" onAction="#onLibraryClicked"/>
+                <Button text="Wishlist" onAction="#onWishlistClicked"/>
+                <Button text="Search" onAction="#onSearchClicked"/>
+
+                <Pane HBox.hgrow="ALWAYS"/>
+
+                <Button text="Sign Out" onAction="#onSignOutClicked"
+                        style="-fx-background-color: #ff4d4d; -fx-text-fill: white;"/>
+            </children>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox alignment="TOP_CENTER" spacing="20">
+            <padding>
+                <Insets top="30" right="30" bottom="30" left="30"/>
+            </padding>
+
+            <!-- Üdvözlés -->
+            <Label fx:id="welcomeLabel" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+
+            <!-- Felhasználói adatok -->
+            <VBox spacing="10" alignment="CENTER_LEFT">
+                <children>
+                    <Label text="Name:" style="-fx-font-weight: bold;"/>
+                    <Label fx:id="nameLabel"/>
+
+                    <Label text="Email:" style="-fx-font-weight: bold;"/>
+                    <Label fx:id="emailLabel"/>
+
+                    <Label text="Birthdate:" style="-fx-font-weight: bold;"/>
+                    <Label fx:id="birthDateLabel"/>
+                </children>
+            </VBox>
+
+            <!-- Olvasási jelölés -->
+            <VBox spacing="10" alignment="CENTER_LEFT">
+                <children>
+                    <Label text="Reading log:" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+
+                    <HBox spacing="10">
+                        <children>
+                            <DatePicker fx:id="readingDatePicker"/>
+                            <CheckBox fx:id="didReadCheckBox" text="I have read on this day"/>
+                            <Button text="Save" onAction="#onSaveReadingClicked"/>
+                        </children>
+                    </HBox>
+                </children>
+            </VBox>
+
+            <!-- Navigációs gombok -->
+            <HBox spacing="25" alignment="CENTER">
+                <children>
+                    <Button text="Readings" onAction="#onReadingsClicked" prefWidth="150"/>
+                    <Button text="Achievements" onAction="#onAchievementsClicked" prefWidth="150"/>
+                    <Button text="Statistics" onAction="#onStatisticsClicked" prefWidth="150"/>
+                </children>
+            </HBox>
+
+        </VBox>
+    </center>
+</BorderPane>

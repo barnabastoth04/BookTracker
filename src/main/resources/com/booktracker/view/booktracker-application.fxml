@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.booktracker.controllers.StartController"
+            prefHeight="720.0" prefWidth="1280.0">
+    <center>
+        <VBox alignment="CENTER" spacing="20">
+            <!-- Main title -->
+            <Label fx:id="welcomeLabel"
+                   text="Welcome To Book Tracker!"
+                   style="-fx-font-size: 40px; -fx-font-weight: bold;"/>
+
+            <!-- Subtitle -->
+            <Label fx:id="subtitleLabel"
+                   text="Take reading to a whole new level with us!"
+                   style="-fx-font-size: 20px; -fx-text-fill: #444;"/>
+
+            <Label fx:id="descriptionLabel"
+                   text="With an account you'll be able to track your reading habits and experiences."
+                   style="-fx-font-size: 15px"/>
+
+            <!-- Login button -->
+            <Button fx:id="signInButton"
+                    text="Sign In"
+                    onAction="#onSignInClicked"
+                    style="-fx-padding: 10px 30px; -fx-font-size: 18px;"/>
+
+            <!-- Register text + hyperlink -->
+            <HBox alignment="CENTER" spacing="1">
+                <Label text="If you don't have an account yet"/>
+                <Hyperlink fx:id="signUpLink"
+                           text="sign up"
+                           onAction="#onSignUpClicked"/>
+                <Label text="here"/>
+            </HBox>
+
+        </VBox>
+    </center>
+</BorderPane>

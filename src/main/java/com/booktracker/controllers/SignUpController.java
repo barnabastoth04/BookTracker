@@ -1,15 +1,19 @@
 package com.booktracker.controllers;
 
+import com.booktracker.config.FxmlView;
+import com.booktracker.config.StageManager;
 import com.booktracker.model.User;
 import com.booktracker.services.UserService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import lombok.Setter;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
 
-import java.io.IOException;
 import java.time.LocalDate;
 
+@Component
 public class SignUpController {
     @FXML
     private TextField usernameField;
@@ -41,13 +45,14 @@ public class SignUpController {
     @FXML
     private Hyperlink signInLink;
 
-    private final SceneController sceneController = new SceneController();
+    private final StageManager stageManager;
+    private final UserService userService;
 
-    public SignUpController() {
+    @Lazy
+    public SignUpController(StageManager stageManager, UserService userService) {
+        this.stageManager = stageManager;
+        this.userService = userService;
     }
-
-    @Setter
-    private UserService userService;
 
     @FXML
     private void onSignUpClicked(ActionEvent event) {
@@ -81,29 +86,16 @@ public class SignUpController {
             dialog.display("Error!", "Username already exists.");
             return;
         }
-
-        try {
-            sceneController.switchScene(event, "/com/booktracker/view/home.fxml");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        stageManager.switchToNextScene(FxmlView.USER);
     }
 
     @FXML
-    private void onReturnClicked(ActionEvent event) {
-        try {
-            sceneController.switchScene(event, "/com/booktracker/view/booktracker-application.fxml");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private void onReturnClicked() {
+        stageManager.switchToNextScene(FxmlView.START);
     }
 
     @FXML
     private void onSignInLinkClicked(ActionEvent event) {
-        try {
-            sceneController.switchScene(event, "/com/booktracker/view/sign-in.fxml");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        stageManager.switchToNextScene(FxmlView.SIGN_IN);
     }
 }

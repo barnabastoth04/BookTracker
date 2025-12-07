@@ -6,9 +6,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
+
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     public boolean validateUser(String username, String password) {
         if (!userRepository.existsByUsername(username)) {
@@ -27,5 +30,13 @@ public class UserService {
         newUser.setPassword(password);
 
         return userRepository.save(newUser);
+    }
+
+    public User signIn(String username) {
+        if (userRepository.existsByUsername(username)) {
+            return userRepository.findByUsername(username);
+        } else {
+            return null;
+        }
     }
 }

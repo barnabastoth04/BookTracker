@@ -1,31 +1,42 @@
 package com.booktracker.controllers;
 
+import com.booktracker.config.FxmlView;
+import com.booktracker.config.StageManager;
+import com.booktracker.model.User;
+import com.booktracker.services.SessionService;
 import com.booktracker.services.UserService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import lombok.Setter;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
 
-import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class SignInController {
+@Component
+public class SignInController implements Initializable {
     @FXML
     private TextField usernameField;
 
     @FXML
     private PasswordField passwordField;
 
-    private final SceneController sceneController = new SceneController();
+    private final StageManager stageManager;
+    private final UserService userService;
+    private final SessionService sessionService;
 
-    public SignInController() {
+    @Lazy
+    public SignInController(StageManager stageManager, UserService userService, SessionService sessionService) {
+        this.stageManager = stageManager;
+        this.userService = userService;
+        this.sessionService = sessionService;
     }
 
-    @Setter
-    private UserService userService;
-
     @FXML
-    public void onSignInClicked(ActionEvent event) throws IOException {
+    public void onSignInClicked(ActionEvent event) {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
@@ -41,19 +52,19 @@ public class SignInController {
             dialog.display("Missing Username/Password", "Sign In Failed: Invalid username or password!");
             return;
         }
-        try {
-            sceneController.switchScene(event, "/com/booktracker/view/home.fxml");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        User user = userService.signIn(username);
+        //TODO:mi van ha null?!?
+        sessionService.setCurrentUser(user);
+        stageManager.switchToNextScene(FxmlView.USER);
     }
 
     @FXML
     private void onSignUpClicked(ActionEvent event) {
-        try {
-            sceneController.switchScene(event, "/com/booktracker/view/sign-up.fxml");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        stageManager.switchToNextScene(FxmlView.SIGN_UP);
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
     }
 }

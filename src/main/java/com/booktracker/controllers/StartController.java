@@ -1,14 +1,15 @@
 package com.booktracker.controllers;
 
+import com.booktracker.config.FxmlView;
+import com.booktracker.config.StageManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
-
-import java.io.IOException;
 
 @Component
 public class StartController {
@@ -27,24 +28,21 @@ public class StartController {
     @FXML
     private Hyperlink signUpLink;
 
-    private final SceneController sceneController = new SceneController();
+    private final StageManager stageManager;
+
+    @Lazy
+    public StartController(StageManager stageManager) {
+        this.stageManager = stageManager;
+    }
 
     @FXML
     private void onSignInClicked(ActionEvent event) {
-        try {
-            sceneController.switchScene(event, "/com/booktracker/view/sign-in.fxml");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        stageManager.switchToNextScene(FxmlView.SIGN_IN);
     }
 
     @FXML
     private void onSignUpClicked(ActionEvent event) {
-        try {
-            sceneController.switchScene(event, "/com/booktracker/view/sign-up.fxml");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        stageManager.switchToNextScene(FxmlView.SIGN_UP);
     }
 
     public void makeFullscreen(Stage stage) {

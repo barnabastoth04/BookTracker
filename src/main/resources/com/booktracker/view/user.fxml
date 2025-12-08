@@ -1,32 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
-<?import javafx.geometry.Insets?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.booktracker.controllers.UserController"
-            prefHeight="720.0" prefWidth="1280.0">
-    <!-- TOP MENU BAR -->
+            prefHeight="720.0" prefWidth="1280.0"
+            style="-fx-background-color: #ADFFA4">
+
     <top>
-        <HBox spacing="30" style="-fx-background-color: #EEEEEE;">
-            <padding>
-                <Insets top="20" right="20" bottom="20" left="20"/>
-            </padding>
-            <children>
-                <Button text="Library" onAction="#onLibraryClicked"/>
-                <Button text="Wishlist" onAction="#onWishlistClicked"/>
-                <Button text="Search" onAction="#onSearchClicked"/>
+        <HBox spacing="30" alignment="CENTER_LEFT" style="-fx-padding: 15; -fx-background-color: #004225;">
+            <Label text="Library" style="-fx-text-fill: white; -fx-font-size: 18;"
+                   onMouseClicked="#onLibraryClicked"/>
+            <Label text="Wishlist" style="-fx-text-fill: white; -fx-font-size: 18;"
+                   onMouseClicked="#onWishlistClicked"/>
+            <Label text="Search" style="-fx-text-fill: white; -fx-font-size: 18;"
+                   onMouseClicked="#onSearchClicked"/>
 
-                <Pane HBox.hgrow="ALWAYS"/>
-
-                <Button text="Sign Out" onAction="#onSignOutClicked"
-                        style="-fx-background-color: #ff4d4d; -fx-text-fill: white;"/>
-            </children>
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Button text="Sign Out" onAction="#onSignOutClicked"
+                    style="-fx-background-color: #E74C3C; -fx-text-fill: white;"/>
         </HBox>
     </top>
 
@@ -36,44 +30,45 @@
                 <Insets top="30" right="30" bottom="30" left="30"/>
             </padding>
 
-            <!-- Üdvözlés -->
-            <Label fx:id="welcomeLabel" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+            <Label fx:id="welcomeLabel" style="-fx-text-fill: #004225; -fx-font-size: 50px; -fx-font-weight: bold"/>
 
-            <!-- Felhasználói adatok -->
             <VBox spacing="10" alignment="CENTER_LEFT">
                 <children>
-                    <Label text="Name:" style="-fx-font-weight: bold;"/>
-                    <Label fx:id="nameLabel"/>
+                    <Label text="Name:" style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
+                    <Label fx:id="nameLabel" style="-fx-font-size: 20px; -fx-text-fill: #004225; -fx-font-weight: bold;"/>
 
-                    <Label text="Email:" style="-fx-font-weight: bold;"/>
-                    <Label fx:id="emailLabel"/>
+                    <Label text="Email:" style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
+                    <Label fx:id="emailLabel" style="-fx-font-size: 20px; -fx-text-fill: #004225; -fx-font-weight: bold;"/>
 
-                    <Label text="Birthdate:" style="-fx-font-weight: bold;"/>
-                    <Label fx:id="birthDateLabel"/>
+                    <Label text="Birthdate:" style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
+                    <Label fx:id="birthDateLabel" style="-fx-font-size: 20px; -fx-text-fill: #004225; -fx-font-weight: bold;"/>
                 </children>
             </VBox>
 
-            <!-- Olvasási jelölés -->
             <VBox spacing="10" alignment="CENTER_LEFT">
                 <children>
-                    <Label text="Reading log:" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+                    <Label text="Reading log:" style="-fx-font-size: 16px; -fx-text-fill: #004225; -fx-font-weight: bold;"/>
 
                     <HBox spacing="10">
                         <children>
                             <DatePicker fx:id="readingDatePicker"/>
-                            <CheckBox fx:id="didReadCheckBox" text="I have read on this day"/>
-                            <Button text="Save" onAction="#onSaveReadingClicked"/>
+                            <CheckBox fx:id="didReadCheckBox" text="I have read on this day"
+                                      style="-fx-text-fill: #004225;"/>
+                            <Button text="Save" onAction="#onSaveReadingClicked"
+                                    style="-fx-background-color: #004225; -fx-text-fill: #FFFFFF;"/>
                         </children>
                     </HBox>
                 </children>
             </VBox>
 
-            <!-- Navigációs gombok -->
             <HBox spacing="25" alignment="CENTER">
                 <children>
-                    <Button text="Readings" onAction="#onReadingsClicked" prefWidth="150"/>
-                    <Button text="Achievements" onAction="#onAchievementsClicked" prefWidth="150"/>
-                    <Button text="Statistics" onAction="#onStatisticsClicked" prefWidth="150"/>
+                    <Button text="Readings" onAction="#onReadingsClicked" prefWidth="150"
+                            style="-fx-background-color: #004225; -fx-text-fill: #FFFFFF;"/>
+                    <Button text="Achievements" onAction="#onAchievementsClicked" prefWidth="150"
+                            style="-fx-background-color: #004225; -fx-text-fill: #FFFFFF;"/>
+                    <Button text="Statistics" onAction="#onStatisticsClicked" prefWidth="150"
+                            style="-fx-background-color: #004225; -fx-text-fill: #FFFFFF;"/>
                 </children>
             </HBox>
 

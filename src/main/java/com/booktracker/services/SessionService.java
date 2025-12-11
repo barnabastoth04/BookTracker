@@ -1,23 +1,32 @@
 package com.booktracker.services;
 
+import com.booktracker.dtos.UserDto;
+import com.booktracker.mappers.UserMapper;
 import com.booktracker.model.User;
 import com.booktracker.repositories.UserRepository;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class SessionService {
+    @Autowired
+    UserMapper userMapper;
+
     private final UserRepository userRepository;
     private static User currentUser;
 
-    public void setCurrentUser(User user) {
-        currentUser = userRepository.findByUsername(user.getUsername());
+    public void setCurrentUser(UserDto userDto) {
+        User user = userMapper.dtoToEntity(userDto);
+        Optional<User> optUser = userRepository.findByUsername(user.getUsername());
+        optUser.ifPresent(value -> currentUser = value);
     }
 
-    public static User findCurrentUser() {
-        return currentUser;
+    public UserDto getCurrentUser() {
+        return userMapper.entityToDto(currentUser);
     }
 
     public static void clear() {

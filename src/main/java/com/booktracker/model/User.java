@@ -40,9 +40,9 @@ public class User {
     @Column(name = "BIRTH_DATE", nullable = false)
     private LocalDate birthDate;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<UserBook> userBooks = new HashSet<>();
+    @Column(name = "READING_DAYS")
+    private Set<LocalDate> readingDays;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<ReadingPerDay> readingDays = new HashSet<>();
+    @OneToMany(mappedBy = "user")
+    private Set<UserBook> userBooks = new HashSet<>();
 }

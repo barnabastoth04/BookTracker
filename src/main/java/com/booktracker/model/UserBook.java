@@ -27,12 +27,11 @@ public class UserBook {
     @JoinColumn(name = "book_id")
     private Book book;
 
-    private Integer rating;
-
-    @Lob
-    private String reviewText;
-
     private boolean inWishlist;
+
     private LocalDate startedAt;
     private LocalDate finishedAt;
+
+    private Integer rating;
+    private String reviewText;
 }

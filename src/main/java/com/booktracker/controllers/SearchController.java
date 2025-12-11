@@ -2,20 +2,14 @@ package com.booktracker.controllers;
 
 import com.booktracker.config.FxmlView;
 import com.booktracker.config.StageManager;
-import com.booktracker.model.Book;
-import com.booktracker.model.UserBook;
+import com.booktracker.dtos.BookDto;
 import com.booktracker.services.BookService;
-import com.booktracker.services.SessionService;
-import com.booktracker.services.UserBookService;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
 import java.util.List;
 
 @Component
@@ -24,21 +18,15 @@ public class SearchController {
     private TextField searchField;
 
     @FXML
-    private ListView<Book> searchResultsListView;
+    private ListView<BookDto> searchResultsListView;
 
     private final StageManager stageManager;
-    private final UserBookService userBookService;
     private final BookService bookService;
 
     @Lazy
-    public SearchController(StageManager stageManager, UserBookService userBookService, BookService bookService) {
+    public SearchController(StageManager stageManager, BookService bookService) {
         this.stageManager = stageManager;
-        this.userBookService = userBookService;
         this.bookService = bookService;
-    }
-
-    @FXML
-    private void initialize() {
     }
 
     @FXML
@@ -49,30 +37,29 @@ public class SearchController {
         if (keyword.isEmpty()) {
             return;
         }
-        List<Book> results = bookService.search(keyword);
+
+        List<BookDto> results = bookService.search(keyword);
+
         searchResultsListView.getItems().setAll(results);
     }
 
     @FXML
-    private void onAddToWishlistClicked() {
-        Book selected = searchResultsListView.getSelectionModel().getSelectedItem();
-        if (selected == null) return;
-
-        UserBook ub = new UserBook();
-        ub.setUser(SessionService.findCurrentUser());
-        ub.setBook(selected);
-        ub.setInWishlist(true);
-
-        userBookService.save(ub);
+    private void onAddBookClicked() {
+        stageManager.switchToNextScene(FxmlView.BOOK);
     }
 
     @FXML
-    private void onLibraryClicked(MouseEvent event) throws IOException {
+    private void onHomeClicked() {
+        stageManager.switchToNextScene(FxmlView.USER);
+    }
+
+    @FXML
+    private void onLibraryClicked() {
         stageManager.switchToNextScene(FxmlView.LIBRARY);
     }
 
     @FXML
-    private void onWishlistClicked(MouseEvent event) throws IOException {
+    private void onWishlistClicked() {
         stageManager.switchToNextScene(FxmlView.WISHLIST);
     }
 
@@ -81,7 +68,7 @@ public class SearchController {
     }
 
     @FXML
-    private void onSignOutClicked(ActionEvent event) throws IOException {
+    private void onSignOutClicked() {
         stageManager.switchToNextScene(FxmlView.START);
     }
 }

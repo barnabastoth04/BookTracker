@@ -2,12 +2,14 @@ package com.booktracker.controllers;
 
 import com.booktracker.config.FxmlView;
 import com.booktracker.config.StageManager;
-import com.booktracker.model.User;
+import com.booktracker.dtos.UserDto;
+import com.booktracker.services.SessionService;
 import com.booktracker.services.UserService;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import lombok.Setter;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
@@ -36,26 +38,19 @@ public class SignUpController {
     @FXML
     private DatePicker birthDateField;
 
-    @FXML
-    private Button signUpButton;
-
-    @FXML
-    private Button returnButton;
-
-    @FXML
-    private Hyperlink signInLink;
-
     private final StageManager stageManager;
     private final UserService userService;
+    private final SessionService sessionService;
 
     @Lazy
-    public SignUpController(StageManager stageManager, UserService userService) {
+    public SignUpController(StageManager stageManager, UserService userService, SessionService sessionService) {
         this.stageManager = stageManager;
         this.userService = userService;
+        this.sessionService = sessionService;
     }
 
     @FXML
-    private void onSignUpClicked(ActionEvent event) {
+    private void onSignUpClicked() {
         String username = usernameField.getText();
         String password = passwordField.getText();
         String email = emailField.getText();
@@ -71,21 +66,14 @@ public class SignUpController {
             return;
         }
 
-        User newUser = new User();
-        newUser.setUsername(username);
-        newUser.setPassword(password);
-        newUser.setEmail(email);
-        newUser.setFirstName(firstName);
-        newUser.setLastName(lastName);
-        newUser.setGender(gender);
-        newUser.setBirthDate(birthDate);
+        UserDto savedUser = userService.signUp(username, password, email, firstName, lastName, gender, birthDate);
 
-        User savedUser = userService.signUp(username, password);
         if (savedUser == null) {
             Dialog dialog = new Dialog();
             dialog.display("Error!", "Username already exists.");
             return;
         }
+        sessionService.setCurrentUser(savedUser);
         stageManager.switchToNextScene(FxmlView.USER);
     }
 
@@ -95,7 +83,7 @@ public class SignUpController {
     }
 
     @FXML
-    private void onSignInLinkClicked(ActionEvent event) {
+    private void onSignInLinkClicked() {
         stageManager.switchToNextScene(FxmlView.SIGN_IN);
     }
 }

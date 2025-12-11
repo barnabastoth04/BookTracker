@@ -2,17 +2,18 @@ package com.booktracker.controllers;
 
 import com.booktracker.config.FxmlView;
 import com.booktracker.config.StageManager;
-import com.booktracker.model.User;
+import com.booktracker.dtos.UserDto;
 import com.booktracker.services.SessionService;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 
+@Component
 public class UserController {
     @FXML
     private Label welcomeLabel;
@@ -33,18 +34,20 @@ public class UserController {
     private CheckBox didReadCheckBox;
 
     private final StageManager stageManager;
+    private final SessionService sessionService;
 
     @Lazy
-    public UserController(StageManager stageManager) {
+    public UserController(StageManager stageManager, SessionService sessionService) {
         this.stageManager = stageManager;
+        this.sessionService = sessionService;
     }
 
     @FXML
     public void initialize() {
-        User currentUser = SessionService.findCurrentUser();
+        UserDto currentUser = sessionService.getCurrentUser();
 
         if (currentUser != null) {
-            welcomeLabel.setText("Hi " + currentUser.getUsername() + "!");
+            welcomeLabel.setText("Nice to see you " + currentUser.getUsername() + "!");
             nameLabel.setText(currentUser.getFirstName() + " " + currentUser.getLastName());
             emailLabel.setText(currentUser.getEmail());
             birthDateLabel.setText(String.valueOf(currentUser.getBirthDate()));
@@ -53,22 +56,26 @@ public class UserController {
     }
 
     @FXML
-    private void onLibraryClicked(ActionEvent event) {
+    private void onHomeClicked() {
+    }
+
+    @FXML
+    private void onLibraryClicked() {
         stageManager.switchToNextScene(FxmlView.LIBRARY);
     }
 
     @FXML
-    private void onWishlistClicked(ActionEvent event) {
+    private void onWishlistClicked() {
         stageManager.switchToNextScene(FxmlView.WISHLIST);
     }
 
     @FXML
-    private void onSearchClicked(ActionEvent event) {
+    private void onSearchClicked() {
         stageManager.switchToNextScene(FxmlView.SEARCH);
     }
 
     @FXML
-    private void onSignOutClicked(ActionEvent event) {
+    private void onSignOutClicked() {
         SessionService.clear();
         stageManager.switchToNextScene(FxmlView.START);
     }
@@ -84,22 +91,27 @@ public class UserController {
             return;
         }
 
-        // Itt fogod elmenteni az adatot DB-be a későbbiekben
-
+        //TODO: jövőbeni dátum ellenőrzése
+        //TODO: adatb
     }
 
     @FXML
-    private void onReadingsClicked(ActionEvent event) {
+    private void onReadingsClicked() {
         // readings oldal
     }
 
     @FXML
-    private void onAchievementsClicked(ActionEvent event) {
+    private void onRatingsClicked() {
+        // ratings oldal
+    }
+
+    @FXML
+    private void onAchievementsClicked() {
         // achievements oldal
     }
 
     @FXML
-    private void onStatisticsClicked(ActionEvent event) {
+    private void onStatisticsClicked() {
         // statistics oldal
     }
 }

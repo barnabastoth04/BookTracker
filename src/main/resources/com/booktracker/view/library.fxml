@@ -4,6 +4,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.booktracker.controllers.LibraryController"
@@ -12,6 +13,8 @@
 
     <top>
         <HBox spacing="30" alignment="CENTER_LEFT" style="-fx-padding: 15; -fx-background-color: #004225;">
+            <Label text="Home" style="-fx-text-fill: white; -fx-font-size: 18;"
+                   onMouseClicked="#onHomeClicked"/>
             <Label text="Library" style="-fx-text-fill: white; -fx-font-size: 18;"
                    onMouseClicked="#onLibraryClicked"/>
             <Label text="Wishlist" style="-fx-text-fill: white; -fx-font-size: 18;"
@@ -25,8 +28,15 @@
         </HBox>
     </top>
 
-    <!-- MAIN CONTENT -->
     <center>
         <ListView fx:id="libraryListView" style="-fx-padding: 20; -fx-background-color: #ADFFA4"/>
     </center>
+
+    <bottom>
+        <HBox spacing="30" alignment="CENTER_LEFT" style="-fx-padding: 15;">
+            <Button text="Add Book To Library" onAction="#onAddToLibraryClicked"
+                    style="-fx-background-color: #004225; -fx-text-fill: #FFFFFF;"/>
+            <TextField fx:id="addToLibrary" promptText="Enter isbn"/>
+        </HBox>
+    </bottom>
 </BorderPane>

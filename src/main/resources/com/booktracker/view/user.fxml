@@ -11,13 +11,14 @@
 
     <top>
         <HBox spacing="30" alignment="CENTER_LEFT" style="-fx-padding: 15; -fx-background-color: #004225;">
+            <Label text="Home" style="-fx-text-fill: white; -fx-font-size: 18;"
+                   onMouseClicked="#onHomeClicked"/>
             <Label text="Library" style="-fx-text-fill: white; -fx-font-size: 18;"
                    onMouseClicked="#onLibraryClicked"/>
             <Label text="Wishlist" style="-fx-text-fill: white; -fx-font-size: 18;"
                    onMouseClicked="#onWishlistClicked"/>
             <Label text="Search" style="-fx-text-fill: white; -fx-font-size: 18;"
                    onMouseClicked="#onSearchClicked"/>
-
             <Pane HBox.hgrow="ALWAYS"/>
             <Button text="Sign Out" onAction="#onSignOutClicked"
                     style="-fx-background-color: #E74C3C; -fx-text-fill: white;"/>
@@ -32,18 +33,38 @@
 
             <Label fx:id="welcomeLabel" style="-fx-text-fill: #004225; -fx-font-size: 50px; -fx-font-weight: bold"/>
 
-            <VBox spacing="10" alignment="CENTER_LEFT">
+            <HBox spacing="25" alignment="CENTER">
                 <children>
-                    <Label text="Name:" style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
-                    <Label fx:id="nameLabel" style="-fx-font-size: 20px; -fx-text-fill: #004225; -fx-font-weight: bold;"/>
-
-                    <Label text="Email:" style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
-                    <Label fx:id="emailLabel" style="-fx-font-size: 20px; -fx-text-fill: #004225; -fx-font-weight: bold;"/>
-
-                    <Label text="Birthdate:" style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
-                    <Label fx:id="birthDateLabel" style="-fx-font-size: 20px; -fx-text-fill: #004225; -fx-font-weight: bold;"/>
+                    <Button text="Readings" onAction="#onReadingsClicked" prefWidth="150"
+                            style="-fx-background-color: #004225; -fx-font-size: 18; -fx-text-fill: #FFFFFF;"/>
+                    <Button text="Ratings" onAction="#onRatingsClicked" prefWidth="150"
+                            style="-fx-background-color: #004225; -fx-font-size: 18; -fx-text-fill: #FFFFFF;"/>
+                    <Button text="Achievements" onAction="#onAchievementsClicked" prefWidth="150"
+                            style="-fx-background-color: #004225; -fx-font-size: 18; -fx-text-fill: #FFFFFF;"/>
+                    <Button text="Statistics" onAction="#onStatisticsClicked" prefWidth="150"
+                            style="-fx-background-color: #004225; -fx-font-size: 18; -fx-text-fill: #FFFFFF;"/>
                 </children>
-            </VBox>
+            </HBox>
+
+            <GridPane alignment="CENTER_LEFT" hgap="20" vgap="15">
+                <padding>
+                    <Insets top="20" right="20" bottom="20" left="20"/>
+                </padding>
+                <Label text="Name:" GridPane.rowIndex="0" GridPane.columnIndex="0"
+                       style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
+                <Label fx:id="nameLabel" GridPane.rowIndex="0" GridPane.columnIndex="1"
+                       style="-fx-font-size: 20px; -fx-text-fill: #004225; -fx-font-weight: bold;"/>
+
+                <Label text="Email:" GridPane.rowIndex="1" GridPane.columnIndex="0"
+                       style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
+                <Label fx:id="emailLabel" GridPane.rowIndex="1" GridPane.columnIndex="1"
+                       style="-fx-font-size: 20px; -fx-text-fill: #004225; -fx-font-weight: bold;"/>
+
+                <Label text="Birthdate:" GridPane.rowIndex="2" GridPane.columnIndex="0"
+                       style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
+                <Label fx:id="birthDateLabel" GridPane.rowIndex="2" GridPane.columnIndex="1"
+                       style="-fx-font-size: 20px; -fx-text-fill: #004225; -fx-font-weight: bold;"/>
+            </GridPane>
 
             <VBox spacing="10" alignment="CENTER_LEFT">
                 <children>
@@ -60,18 +81,6 @@
                     </HBox>
                 </children>
             </VBox>
-
-            <HBox spacing="25" alignment="CENTER">
-                <children>
-                    <Button text="Readings" onAction="#onReadingsClicked" prefWidth="150"
-                            style="-fx-background-color: #004225; -fx-text-fill: #FFFFFF;"/>
-                    <Button text="Achievements" onAction="#onAchievementsClicked" prefWidth="150"
-                            style="-fx-background-color: #004225; -fx-text-fill: #FFFFFF;"/>
-                    <Button text="Statistics" onAction="#onStatisticsClicked" prefWidth="150"
-                            style="-fx-background-color: #004225; -fx-text-fill: #FFFFFF;"/>
-                </children>
-            </HBox>
-
         </VBox>
     </center>
 </BorderPane>

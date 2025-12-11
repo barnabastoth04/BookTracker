@@ -38,23 +38,23 @@
 
             <Label text="First Name:" GridPane.rowIndex="0" GridPane.columnIndex="0"
                    style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
-            <TextField fx:id="firstNameField" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+            <TextField fx:id="firstNameField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
             <Label text="Last Name:" GridPane.rowIndex="0" GridPane.columnIndex="2"
                    style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
-            <TextField fx:id="lastNameField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+            <TextField fx:id="lastNameField" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
 
             <Label text="Username:" GridPane.rowIndex="1" GridPane.columnIndex="0"
                    style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
-            <TextField fx:id="usernameField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+            <TextField fx:id="usernameField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 
             <Label text="Password:" GridPane.rowIndex="1" GridPane.columnIndex="2"
                    style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
-            <PasswordField fx:id="passwordField" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+            <PasswordField fx:id="passwordField" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
 
             <Label text="Email:" GridPane.rowIndex="2" GridPane.columnIndex="0"
                    style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
-            <TextField fx:id="emailField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+            <TextField fx:id="emailField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
 
             <Label text="Gender:" GridPane.rowIndex="2" GridPane.columnIndex="2"
                    style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
@@ -71,6 +71,7 @@
             <Label text="Birth Date:" GridPane.rowIndex="3" GridPane.columnIndex="0"
                    style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
             <DatePicker fx:id="birthDateField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
             <Button text="Sign Up" fx:id="signUpButton" onAction="#onSignUpClicked"
                     GridPane.rowIndex="3" GridPane.columnIndex="3"
                     style="-fx-padding: 10px 30px; -fx-font-size: 20px; -fx-background-color: #004225; -fx-text-fill: #FFFFFF;"/>

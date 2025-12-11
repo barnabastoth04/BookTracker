@@ -2,22 +2,17 @@ package com.booktracker.controllers;
 
 import com.booktracker.config.FxmlView;
 import com.booktracker.config.StageManager;
-import com.booktracker.model.User;
+import com.booktracker.dtos.UserDto;
 import com.booktracker.services.SessionService;
 import com.booktracker.services.UserService;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
 @Component
-public class SignInController implements Initializable {
+public class SignInController {
     @FXML
     private TextField usernameField;
 
@@ -36,7 +31,7 @@ public class SignInController implements Initializable {
     }
 
     @FXML
-    public void onSignInClicked(ActionEvent event) {
+    public void onSignInClicked() {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
@@ -49,22 +44,21 @@ public class SignInController implements Initializable {
 
         if (!valid) {
             Dialog dialog = new Dialog();
-            dialog.display("Missing Username/Password", "Sign In Failed: Invalid username or password!");
+            dialog.display("Invalid Username/Password", "Sign In Failed: Invalid username or password!");
             return;
         }
-        User user = userService.signIn(username);
-        //TODO:mi van ha null?!?
+        UserDto user = userService.signIn(username);
         sessionService.setCurrentUser(user);
         stageManager.switchToNextScene(FxmlView.USER);
     }
 
     @FXML
-    private void onSignUpClicked(ActionEvent event) {
-        stageManager.switchToNextScene(FxmlView.SIGN_UP);
+    private void onReturnClicked() {
+        stageManager.switchToNextScene(FxmlView.START);
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
+    @FXML
+    private void onSignUpClicked() {
+        stageManager.switchToNextScene(FxmlView.SIGN_UP);
     }
 }

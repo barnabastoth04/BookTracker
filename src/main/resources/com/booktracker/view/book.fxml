@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.image.ImageView?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.booktracker.controllers.BookController"
+            prefHeight="720.0" prefWidth="1280.0"
+            style="-fx-background-color: #ADFFA4">
+
+    <top>
+        <VBox alignment="CENTER" spacing="10">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+            <Label text="Add Book To Book Tracker"
+                   style="-fx-text-fill: #004225; -fx-font-size: 50px; -fx-font-weight: bold">
+            </Label>
+            <Button text="Return" fx:id="returnButton" onAction="#onReturnClicked"
+                    style="-fx-background-color: #004225; -fx-text-fill: #FFFFFF;"/>
+        </VBox>
+    </top>
+
+    <center>
+        <GridPane alignment="CENTER" hgap="20" vgap="15">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+            <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" prefWidth="180"/>
+                <ColumnConstraints halignment="LEFT" prefWidth="180"/>
+                <ColumnConstraints halignment="RIGHT" prefWidth="180"/>
+                <ColumnConstraints halignment="LEFT" prefWidth="180"/>
+                <ColumnConstraints halignment="RIGHT" prefWidth="180"/>
+                <ColumnConstraints halignment="LEFT" prefWidth="180"/>
+            </columnConstraints>
+
+            <Label text="Title:" GridPane.rowIndex="0" GridPane.columnIndex="0"
+                   style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
+            <TextField fx:id="titleField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+            <Label text="Author:" GridPane.rowIndex="0" GridPane.columnIndex="2"
+                   style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
+            <TextField fx:id="authorField" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+
+            <Label text="Number of Pages:" GridPane.rowIndex="0" GridPane.columnIndex="4"
+                   style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
+            <TextField fx:id="pageField" GridPane.rowIndex="0" GridPane.columnIndex="5"/>
+
+            <Label text="Publisher:" GridPane.rowIndex="1" GridPane.columnIndex="0"
+                   style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
+            <TextField fx:id="publisherField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+            <Label text="Year of Publication:" GridPane.rowIndex="1" GridPane.columnIndex="2"
+                   style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
+            <TextField fx:id="yearOfPublicationField" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+
+            <Label text="Cover:" GridPane.rowIndex="1" GridPane.columnIndex="4"
+                   style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
+            <ComboBox fx:id="coverField" GridPane.rowIndex="1" GridPane.columnIndex="5">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Paperback"/>
+                        <String fx:value="Hardcover"/>
+                        <String fx:value="Ebook"/>
+                        <String fx:value="Audiobook"/>
+                        <String fx:value="Other"/>
+                    </FXCollections>
+                </items>
+            </ComboBox>
+
+            <Label text="ISBN:" GridPane.rowIndex="2" GridPane.columnIndex="0"
+                   style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
+            <TextField fx:id="isbnField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+            <Label text="Genre:" GridPane.rowIndex="2" GridPane.columnIndex="2"
+                   style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
+            <TextField fx:id="genreField" GridPane.rowIndex="2" GridPane.columnIndex="3"/>
+
+            <Label text="First Published:" GridPane.rowIndex="2" GridPane.columnIndex="4"
+                   style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
+            <TextField fx:id="firstPublishedField" GridPane.rowIndex="2" GridPane.columnIndex="5"/>
+
+            <Label text="Original Title:" GridPane.rowIndex="3" GridPane.columnIndex="0"
+                   style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
+            <TextField fx:id="originalTitleField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+            <Label text="Translator:" GridPane.rowIndex="3" GridPane.columnIndex="2"
+                   style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
+            <TextField fx:id="translatorField" GridPane.rowIndex="3" GridPane.columnIndex="3"/>
+
+            <Label text="Illustrator:" GridPane.rowIndex="3" GridPane.columnIndex="4"
+                   style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
+            <TextField fx:id="illustratorField" GridPane.rowIndex="3" GridPane.columnIndex="5"/>
+
+            <Hyperlink text="Upload Cover:" fx:id="selectCoverLink" onAction="#onSelectCoverImageClicked"
+                       GridPane.rowIndex="4" GridPane.columnIndex="2"
+                       style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
+            <ImageView fx:id="coverImageView" GridPane.rowIndex="4" GridPane.columnIndex="3"
+                       fitWidth="200" fitHeight="300" preserveRatio="true"/>
+        </GridPane>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER" spacing="10">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+            <Button text="Add Book" fx:id="addBookButton" onAction="#onAddBookClicked"
+                    style="-fx-padding: 10px 30px; -fx-font-size: 20px; -fx-background-color: #004225; -fx-text-fill: #FFFFFF;"/>
+        </HBox>
+    </bottom>
+</BorderPane>

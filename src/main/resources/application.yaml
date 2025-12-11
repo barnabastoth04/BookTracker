@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:booktrackerdb
+    url: jdbc:h2:file:./data/booktrackerdb;AUTO_SERVER=TRUE
     username: sa
     password:
     driver-class-name: org.h2.Driver
@@ -9,9 +9,8 @@ spring:
     show-sql: true
     generate-ddl: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     database-platform: org.hibernate.dialect.H2Dialect
-    defer-datasource-initialization: true
 
   sql:
     init:

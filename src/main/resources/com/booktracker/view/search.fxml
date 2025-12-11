@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.booktracker.controllers.SearchController"
@@ -9,12 +10,14 @@
             style="-fx-background-color: #ADFFA4">
     <top>
         <HBox spacing="30" alignment="CENTER_LEFT" style="-fx-padding: 15; -fx-background-color: #004225;">
+            <Label text="Home" style="-fx-text-fill: white; -fx-font-size: 18;"
+                   onMouseClicked="#onHomeClicked"/>
             <Label text="Library" style="-fx-text-fill: white; -fx-font-size: 18;"
                    onMouseClicked="#onLibraryClicked"/>
             <Label text="Wishlist" style="-fx-text-fill: white; -fx-font-size: 18;"
                    onMouseClicked="#onWishlistClicked"/>
             <Label text="Search" style="-fx-text-fill: white; -fx-font-size: 18;"
-                   onMouseClicked="#onSearchClicked"/>
+                   onMouseClicked="#onSearchMenuClicked"/>
 
             <Pane HBox.hgrow="ALWAYS"/>
             <Button text="Sign Out" onAction="#onSignOutClicked"
@@ -30,4 +33,16 @@
             <ListView fx:id="searchResultsListView" style="-fx-padding: 20; -fx-font-size: 14;"/>
         </VBox>
     </center>
+
+    <bottom>
+        <HBox spacing="20" alignment="CENTER">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+            <Label text="You don't find the book? Please help us!"
+                   style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
+            <Button text="Add Book" onAction="#onAddBookClicked"
+                    style="-fx-background-color: #004225; -fx-text-fill: #FFFFFF;"/>
+        </HBox>
+    </bottom>
 </BorderPane>

@@ -31,7 +31,7 @@ public class StageManager {
         primaryStage.show();
     }
 
-    public void switchToNextScene(final FxmlView view) {
+    public void switchToNextScene(FxmlView view) {
 
         Parent root = loadRoot(view.getFxmlPath());
         primaryStage.getScene().setRoot(root);

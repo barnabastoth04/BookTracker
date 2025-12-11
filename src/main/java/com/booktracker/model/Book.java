@@ -6,8 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
-import java.util.List;
+import java.time.Year;
 
 @Entity
 @Table(name = "books")
@@ -31,7 +30,7 @@ public class Book {
     private String publisher;
 
     @Column(name = "YEAR_OF_PUBLICATION", nullable = false)
-    private LocalDate yearOfPublication;
+    private Year yearOfPublication;
 
     @Column(name = "PAGE_NUMBER", nullable = false)
     private int pageNumber;
@@ -44,11 +43,10 @@ public class Book {
     private long isbn;
 
     @Column(name="GENRE")
-    @Enumerated(EnumType.STRING)
-    private Genre genre;
+    private String genre;
 
-    @Column(name = "FIRST_PUBLISHED")
-    private LocalDate firstPublished;
+    @Column(name = "FIRST_PUBLISHED", nullable = false)
+    private Year firstPublished;
 
     @Column(name = "ORIGINAL_TITLE")
     private String originalTitle;
@@ -58,4 +56,7 @@ public class Book {
 
     @Column(name = "ILLUSTRATOR")
     private String illustrator;
+
+    @Column(name="COVER_IMAGE_PATH")
+    private String coverImagePath;
 }

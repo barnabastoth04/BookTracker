@@ -42,6 +42,12 @@ public enum FxmlView {
         public String getFxmlPath() {
             return "/com/booktracker/view/search.fxml";
         }
+    },
+    BOOK {
+        @Override
+        public String getFxmlPath() {
+            return "/com/booktracker/view/book.fxml";
+        }
     };
 
     public abstract String getFxmlPath();

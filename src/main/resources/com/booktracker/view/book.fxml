@@ -14,16 +14,16 @@
             style="-fx-background-color: #ADFFA4">
 
     <top>
-        <VBox alignment="CENTER" spacing="10">
+        <HBox alignment="CENTER" spacing="10">
             <padding>
                 <Insets top="20" right="20" bottom="20" left="20"/>
             </padding>
-            <Label text="Add Book To Book Tracker"
-                   style="-fx-text-fill: #004225; -fx-font-size: 50px; -fx-font-weight: bold">
-            </Label>
-            <Button text="Return" fx:id="returnButton" onAction="#onReturnClicked"
-                    style="-fx-background-color: #004225; -fx-text-fill: #FFFFFF;"/>
-        </VBox>
+            <Label text="Add Book To Book Tracker:"
+                   style="-fx-text-fill: #004225; -fx-font-size: 50px; -fx-font-weight: bold"/>
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Button text="Return" onAction="#onReturnClicked"
+                    style="-fx-background-color: #004225; -fx-text-fill: #FFFFFF; -fx-font-size: 20px;"/>
+        </HBox>
     </top>
 
     <center>

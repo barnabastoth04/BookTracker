@@ -6,7 +6,9 @@ import com.booktracker.dtos.BookDto;
 import com.booktracker.services.BookService;
 import com.booktracker.services.SessionService;
 import com.booktracker.services.UserBookService;
+import com.booktracker.services.UserService;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import org.springframework.context.annotation.Lazy;
@@ -15,61 +17,44 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class WishlistController {
+public class StatisticsController {
     @FXML
-    private ListView<BookDto> wishlistListView;
+    private Label bookPerYear;
 
     @FXML
-    private TextField addToWishList;
+    private Label pagePerYear;
+
+    @FXML
+    private Label daysPerYear;
+
+    @FXML
+    private Label percentageOfYear;
 
     private final StageManager stageManager;
-    private final BookService bookService;
+    private final UserService userService;
     private final UserBookService userBookService;
     private final SessionService sessionService;
 
     @Lazy
-    public WishlistController(StageManager stageManager, BookService bookService, UserBookService userBookService, SessionService sessionService) {
+    public StatisticsController(StageManager stageManager, UserService userService, UserBookService userBookService, SessionService sessionService) {
         this.stageManager = stageManager;
-        this.bookService = bookService;
+        this.userService = userService;
         this.userBookService = userBookService;
         this.sessionService = sessionService;
     }
 
     @FXML
     private void initialize() {
-        if (sessionService.getCurrentUser() == null) {
-            return;
-        }
-        List<BookDto> results = userBookService.getWishlistBooks(sessionService.getCurrentUser());
+        int days = userService.getDaysPerYear(sessionService.getCurrentUser());
+        daysPerYear.setText(String.valueOf(days));
+        double percentage = (double) days / 365 * 100;
+        percentageOfYear.setText("(" + percentage + " %)");
 
-        wishlistListView.getItems().setAll(results);
-    }
+        int books = userBookService.getBooksPerYear(sessionService.getCurrentUser());
+        bookPerYear.setText("You've read " + books + " books this year so far");
 
-    @FXML
-    private void onAddToWishlistClicked() {
-        String isbnString = addToWishList.getText();
-
-        if (isbnString.isEmpty()) {
-            return;
-        }
-        long isbn = Long.parseLong(isbnString);
-        BookDto selected = bookService.getBookByIsbn(isbn);
-
-        Dialog dialog = new Dialog();
-        if (selected == null) {
-            dialog.display("Error", "This book does not exist");
-            return;
-        }
-
-        boolean save = userBookService.addToWishlist(selected, sessionService.getCurrentUser());
-
-        if (!save) {
-            dialog.display("Error", "This book is already in your wishlist!");
-        }
-
-        dialog.display("Add Book Success", "Book Added Successfully!");
-
-        stageManager.switchToNextScene(FxmlView.WISHLIST);
+        int pages = userBookService.getPagesPerYear(sessionService.getCurrentUser());
+        pagePerYear.setText("You've read " + pages + " page this year so far");
     }
 
     @FXML
@@ -84,6 +69,7 @@ public class WishlistController {
 
     @FXML
     private void onWishlistClicked() {
+        stageManager.switchToNextScene(FxmlView.WISHLIST);
     }
 
     @FXML

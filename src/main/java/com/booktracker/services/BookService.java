@@ -64,7 +64,7 @@ public class BookService {
         long bookId = book.getBookId();
 
         try {
-            Path dir = Paths.get("data/covers");
+            Path dir = Paths.get("src/main/resources/com/booktracker/covers");
             if (!Files.exists(dir)) {
                 Files.createDirectories(dir);
             }
@@ -72,12 +72,20 @@ public class BookService {
             String extension = image.getName().substring(image.getName().lastIndexOf("."));
             Path target = dir.resolve("book_" + bookId + extension);
             Files.copy(image.toPath(), target, StandardCopyOption.REPLACE_EXISTING);
-            path = target.toString();
+            path = "/com/booktracker/covers/book_" + bookId + extension;
         } catch (IOException e) {
             throw new RuntimeException("Could not save cover image!", e);
         }
         book.setCoverImagePath(path);
         bookRepository.save(book);
+    }
+
+    public BookDto getBookByTitle(String title) {
+        Optional<Book> optBook = bookRepository.findByTitle(title);
+        if (optBook.isPresent()) {
+            return bookMapper.entityToDto(optBook.get());
+        }
+        return null;
     }
 
     public BookDto getBookByIsbn(Long isbn) {

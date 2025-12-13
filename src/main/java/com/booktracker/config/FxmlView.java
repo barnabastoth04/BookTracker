@@ -37,16 +37,46 @@ public enum FxmlView {
             return "/com/booktracker/view/wishlist.fxml";
         }
     },
-    SEARCH {
+    SEARCH_BY_NAME {
         @Override
         public String getFxmlPath() {
-            return "/com/booktracker/view/search.fxml";
+            return "/com/booktracker/view/search-by-name.fxml";
+        }
+    },
+    SEARCH_BY_COPY {
+        @Override
+        public String getFxmlPath() {
+            return "/com/booktracker/view/search-by-copy.fxml";
         }
     },
     BOOK {
         @Override
         public String getFxmlPath() {
             return "/com/booktracker/view/book.fxml";
+        }
+    },
+    READINGS {
+        @Override
+        public String getFxmlPath() {
+            return "/com/booktracker/view/readings.fxml";
+        }
+    },
+    RATINGS {
+        @Override
+        public String getFxmlPath() {
+            return "/com/booktracker/view/ratings.fxml";
+        }
+    },
+    ACHIEVEMENTS {
+        @Override
+        public String getFxmlPath() {
+            return "/com/booktracker/view/achievements.fxml";
+        }
+    },
+    STATISTICS {
+        @Override
+        public String getFxmlPath() {
+            return "/com/booktracker/view/statistics.fxml";
         }
     };
 

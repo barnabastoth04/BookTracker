@@ -19,12 +19,20 @@
                    onMouseClicked="#onLibraryClicked"/>
             <Label text="Wishlist" style="-fx-text-fill: white; -fx-font-size: 18;"
                    onMouseClicked="#onWishlistClicked"/>
-            <Label text="Search" style="-fx-text-fill: white; -fx-font-size: 18;"
-                   onMouseClicked="#onSearchClicked"/>
-
+            <MenuButton style="-fx-background-color: #004225;">
+                <graphic>
+                    <Label text="Search" style="-fx-text-fill: white; -fx-font-size: 18;"/>
+                </graphic>
+                <items>
+                    <MenuItem text="Search by Author/Title" onAction="#onSearchByAuthorTitle"
+                              style="-fx-text-fill: #004225; -fx-font-size: 15;"/>
+                    <MenuItem text="Search by Copy" onAction="#onSearchByCopy"
+                              style="-fx-text-fill: #004225; -fx-font-size: 15;"/>
+                </items>
+            </MenuButton>
             <Pane HBox.hgrow="ALWAYS"/>
             <Button text="Sign Out" onAction="#onSignOutClicked"
-                    style="-fx-background-color: #E74C3C; -fx-text-fill: white;"/>
+                    style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-font-size: 15;"/>
         </HBox>
     </top>
 

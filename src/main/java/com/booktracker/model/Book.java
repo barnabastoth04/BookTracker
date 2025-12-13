@@ -18,7 +18,7 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false)
-    private long bookId;
+    private Long bookId;
 
     @Column(name = "TITLE", nullable = false)
     private String title;
@@ -40,7 +40,7 @@ public class Book {
     private Cover cover;
 
     @Column(name = "ISBN", nullable = false)
-    private long isbn;
+    private Long isbn;
 
     @Column(name="GENRE")
     private String genre;

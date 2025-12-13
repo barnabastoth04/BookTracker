@@ -11,6 +11,8 @@ import java.util.Optional;
 public interface BookRepository extends JpaRepository<Book, Long> {
     boolean existsByTitle(String title);
 
+    Optional<Book> findByTitle(String title);
+
     Optional<Book> findByIsbn(Long isbn);
 
     List<Book> findByTitleContainingIgnoreCase(String title);

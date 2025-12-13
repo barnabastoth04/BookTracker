@@ -11,6 +11,5 @@ public abstract class UserMapper {
     public abstract UserDto entityToDto(User user);
 
     @Mapping(target = "userId", source = "id")
-    @Mapping(target = "userBooks", ignore = true)
     public abstract User dtoToEntity(UserDto userDto);
 }

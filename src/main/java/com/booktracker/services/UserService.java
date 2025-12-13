@@ -3,6 +3,8 @@ package com.booktracker.services;
 import com.booktracker.dtos.UserDto;
 import com.booktracker.mappers.UserMapper;
 import com.booktracker.model.User;
+import com.booktracker.model.UserReadingDays;
+import com.booktracker.repositories.UserReadingDaysRepository;
 import com.booktracker.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -19,12 +22,9 @@ public class UserService {
     UserMapper userMapper;
 
     private final UserRepository userRepository;
+    private final UserReadingDaysRepository userReadingDaysRepository;
 
     public boolean validateUser(String username, String password) {
-        if (!userRepository.existsByUsername(username)) {
-            return false;
-        }
-
         Optional<User> optUser = userRepository.findByUsername(username);
         User user;
         if (optUser.isPresent()) {
@@ -32,7 +32,7 @@ public class UserService {
         } else {
             return false;
         }
-        return user.getPassword().equals(password);
+        return PasswordSecurity.verify(password, user.getPassword());
     }
 
     public UserDto signUp(String username, String password, String email, String firstName, String lastName, String gender, LocalDate birthDate) {
@@ -41,7 +41,7 @@ public class UserService {
         }
         User newUser = new User();
         newUser.setUsername(username);
-        newUser.setPassword(password);
+        newUser.setPassword(PasswordSecurity.hash(password));
         newUser.setEmail(email);
         newUser.setFirstName(firstName);
         newUser.setLastName(lastName);
@@ -55,12 +55,36 @@ public class UserService {
     }
 
     public UserDto signIn(String username) {
-        if (userRepository.existsByUsername(username)) {
-            Optional<User> optUser = userRepository.findByUsername(username);
-            if (optUser.isPresent()) {
-                return userMapper.entityToDto(optUser.get());
+        Optional<User> optUser = userRepository.findByUsername(username);
+        return optUser.map(user -> userMapper.entityToDto(user)).orElse(null);
+    }
+
+    public boolean saveReading(LocalDate date, String username) {
+        Optional<User> optUser = userRepository.findByUsername(username);
+
+        if (optUser.isPresent()) {
+            UserReadingDays readingDays = new UserReadingDays();
+            readingDays.setUser(optUser.get());
+            readingDays.setDate(date);
+            userReadingDaysRepository.save(readingDays);
+            return true;
+        }
+        return false;
+    }
+
+    public int getDaysPerYear(UserDto userDto) {
+        List<UserReadingDays> readingDays = userReadingDaysRepository.findAllByUser(userMapper.dtoToEntity(userDto));
+        int counter = 0;
+
+        if (readingDays.isEmpty()) {
+            return counter;
+        }
+
+        for (UserReadingDays rd : readingDays) {
+            if (rd.getDate().getYear() == LocalDate.now().getYear()) {
+                counter++;
             }
         }
-        return null;
+        return counter;
     }
 }

@@ -137,6 +137,6 @@ public class BookController {
 
     @FXML
     private void onReturnClicked() {
-        stageManager.switchToNextScene(FxmlView.SEARCH);
+        stageManager.switchToNextScene(FxmlView.USER);
     }
 }

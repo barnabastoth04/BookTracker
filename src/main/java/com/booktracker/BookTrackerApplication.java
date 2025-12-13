@@ -10,7 +10,6 @@ import org.springframework.context.ConfigurableApplicationContext;
 public class BookTrackerApplication extends Application {
     private static Stage stage;
     private ConfigurableApplicationContext applicationContext;
-    private StageManager stageManager;
 
     @Override
     public void init() {
@@ -18,19 +17,15 @@ public class BookTrackerApplication extends Application {
     }
 
     @Override
-    public void stop() {
-        applicationContext.close();
-        stage.close();
+    public void start(Stage primaryStage) {
+        stage = primaryStage;
+        StageManager stageManager = applicationContext.getBean(StageManager.class, primaryStage);
+        stageManager.switchScene(FxmlView.START);
     }
 
     @Override
-    public void start(Stage stage) {
-        this.stage = stage;
-        stageManager = applicationContext.getBean(StageManager.class, stage);
-        showStartScene();
-    }
-
-    private void showStartScene() {
-        stageManager.switchScene(FxmlView.START);
+    public void stop() {
+        applicationContext.close();
+        stage.close();
     }
 }

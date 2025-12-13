@@ -4,8 +4,9 @@ import com.booktracker.config.FxmlView;
 import com.booktracker.config.StageManager;
 import com.booktracker.dtos.UserDto;
 import com.booktracker.services.SessionService;
+import com.booktracker.services.UserService;
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import org.springframework.context.annotation.Lazy;
@@ -30,16 +31,15 @@ public class UserController {
     @FXML
     private DatePicker readingDatePicker;
 
-    @FXML
-    private CheckBox didReadCheckBox;
-
     private final StageManager stageManager;
     private final SessionService sessionService;
+    private final UserService userService;
 
     @Lazy
-    public UserController(StageManager stageManager, SessionService sessionService) {
+    public UserController(StageManager stageManager, SessionService sessionService, UserService userService) {
         this.stageManager = stageManager;
         this.sessionService = sessionService;
+        this.userService = userService;
     }
 
     @FXML
@@ -52,7 +52,6 @@ public class UserController {
             emailLabel.setText(currentUser.getEmail());
             birthDateLabel.setText(String.valueOf(currentUser.getBirthDate()));
         }
-        //TODO: mi van ha nincs felhasználó?!?
     }
 
     @FXML
@@ -70,8 +69,13 @@ public class UserController {
     }
 
     @FXML
-    private void onSearchClicked() {
-        stageManager.switchToNextScene(FxmlView.SEARCH);
+    private void onSearchByAuthorTitle() {
+        stageManager.switchToNextScene(FxmlView.SEARCH_BY_NAME);
+    }
+
+    @FXML
+    private void onSearchByCopy() {
+        stageManager.switchToNextScene(FxmlView.SEARCH_BY_COPY);
     }
 
     @FXML
@@ -83,35 +87,39 @@ public class UserController {
     @FXML
     private void onSaveReadingClicked() {
         LocalDate date = readingDatePicker.getValue();
-        boolean read = didReadCheckBox.isSelected();
+        Dialog dialog = new Dialog();
 
-        if (date == null) {
-            Dialog dialog = new Dialog();
-            dialog.display("Warning", "Please select a date to read this!");
+        if (date == null || date.isAfter(LocalDate.now())) {
+            dialog.display("Error", "Please select a valid date to read!");
             return;
         }
 
-        //TODO: jövőbeni dátum ellenőrzése
-        //TODO: adatb
+        boolean save = userService.saveReading(date, sessionService.getCurrentUser().getUsername());
+
+        if (!save) {
+            dialog.display("Error", "Save failed!");
+        } else {
+            dialog.display("Success!", "Saved!");
+        }
     }
 
     @FXML
     private void onReadingsClicked() {
-        // readings oldal
+        stageManager.switchToNextScene(FxmlView.READINGS);
     }
 
     @FXML
     private void onRatingsClicked() {
-        // ratings oldal
+        stageManager.switchToNextScene(FxmlView.RATINGS);
     }
 
     @FXML
     private void onAchievementsClicked() {
-        // achievements oldal
+        stageManager.switchToNextScene(FxmlView.ACHIEVEMENTS);
     }
 
     @FXML
     private void onStatisticsClicked() {
-        // statistics oldal
+        stageManager.switchToNextScene(FxmlView.STATISTICS);
     }
 }

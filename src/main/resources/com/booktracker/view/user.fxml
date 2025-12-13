@@ -17,11 +17,20 @@
                    onMouseClicked="#onLibraryClicked"/>
             <Label text="Wishlist" style="-fx-text-fill: white; -fx-font-size: 18;"
                    onMouseClicked="#onWishlistClicked"/>
-            <Label text="Search" style="-fx-text-fill: white; -fx-font-size: 18;"
-                   onMouseClicked="#onSearchClicked"/>
+            <MenuButton style="-fx-background-color: #004225;">
+                <graphic>
+                    <Label text="Search" style="-fx-text-fill: white; -fx-font-size: 18;"/>
+                </graphic>
+                <items>
+                    <MenuItem text="Search by Author/Title" onAction="#onSearchByAuthorTitle"
+                              style="-fx-text-fill: #004225; -fx-font-size: 15;"/>
+                    <MenuItem text="Search by Copy" onAction="#onSearchByCopy"
+                              style="-fx-text-fill: #004225; -fx-font-size: 15;"/>
+                </items>
+            </MenuButton>
             <Pane HBox.hgrow="ALWAYS"/>
             <Button text="Sign Out" onAction="#onSignOutClicked"
-                    style="-fx-background-color: #E74C3C; -fx-text-fill: white;"/>
+                    style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-font-size: 15;"/>
         </HBox>
     </top>
 
@@ -31,7 +40,8 @@
                 <Insets top="30" right="30" bottom="30" left="30"/>
             </padding>
 
-            <Label fx:id="welcomeLabel" style="-fx-text-fill: #004225; -fx-font-size: 50px; -fx-font-weight: bold"/>
+            <Label fx:id="welcomeLabel" style="-fx-font-size: 60px; -fx-font-weight: bold;
+                   -fx-text-fill: #FFFFFF; -fx-effect: dropshadow(three-pass-box, #004225, 15, 0, 0, 0);"/>
 
             <HBox spacing="25" alignment="CENTER">
                 <children>
@@ -73,9 +83,7 @@
                     <HBox spacing="10">
                         <children>
                             <DatePicker fx:id="readingDatePicker"/>
-                            <CheckBox fx:id="didReadCheckBox" text="I have read on this day"
-                                      style="-fx-text-fill: #004225;"/>
-                            <Button text="Save" onAction="#onSaveReadingClicked"
+                            <Button text="I have read on this day" onAction="#onSaveReadingClicked"
                                     style="-fx-background-color: #004225; -fx-text-fill: #FFFFFF;"/>
                         </children>
                     </HBox>

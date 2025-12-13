@@ -19,12 +19,10 @@ public class StageManager {
         this.applicationTitle = applicationTitle;
     }
 
-    public void switchScene(final FxmlView view) {
-
+    public void switchScene(FxmlView view) {
         primaryStage.setTitle(applicationTitle);
 
         Parent root = loadRoot(view.getFxmlPath());
-
         Scene scene = new Scene(root);
 
         primaryStage.setScene(scene);
@@ -32,7 +30,6 @@ public class StageManager {
     }
 
     public void switchToNextScene(FxmlView view) {
-
         Parent root = loadRoot(view.getFxmlPath());
         primaryStage.getScene().setRoot(root);
 

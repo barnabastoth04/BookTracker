@@ -17,7 +17,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false)
-    private long userId;
+    private Long userId;
 
     @Column(name = "USERNAME", nullable = false)
     private String username;
@@ -40,8 +40,11 @@ public class User {
     @Column(name = "BIRTH_DATE", nullable = false)
     private LocalDate birthDate;
 
-    @Column(name = "READING_DAYS")
-    private Set<LocalDate> readingDays;
+    @OneToMany(mappedBy = "user")
+    private Set<UserReadingDays> readingDays = new HashSet<>();
+
+    @OneToMany(mappedBy = "user")
+    private Set<UserAchievement> achievements = new HashSet<>();
 
     @OneToMany(mappedBy = "user")
     private Set<UserBook> userBooks = new HashSet<>();

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class SearchController {
+public class SearchByNameController {
     @FXML
     private TextField searchField;
 
@@ -24,7 +24,7 @@ public class SearchController {
     private final BookService bookService;
 
     @Lazy
-    public SearchController(StageManager stageManager, BookService bookService) {
+    public SearchByNameController(StageManager stageManager, BookService bookService) {
         this.stageManager = stageManager;
         this.bookService = bookService;
     }
@@ -64,7 +64,13 @@ public class SearchController {
     }
 
     @FXML
-    private void onSearchMenuClicked() {
+    private void onSearchByAuthorTitle() {
+        stageManager.switchToNextScene(FxmlView.SEARCH_BY_NAME);
+    }
+
+    @FXML
+    private void onSearchByCopy() {
+        stageManager.switchToNextScene(FxmlView.SEARCH_BY_COPY);
     }
 
     @FXML

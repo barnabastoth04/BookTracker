@@ -20,18 +20,28 @@ public class UserBook {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "USER_ID")
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "book_id")
+    @JoinColumn(name = "BOOK_ID")
     private Book book;
 
-    private boolean inWishlist;
+    @Column(name = "IN_WISHLIST")
+    private Boolean inWishlist;
 
+    @Column(name = "STARTED")
     private LocalDate startedAt;
+
+    @Column(name = "FINISHED")
     private LocalDate finishedAt;
 
-    private Integer rating;
+    @Column(name = "IS_RATED")
+    private Boolean rated;
+
+    @Column(name = "STARS")
+    private Integer stars;
+
+    @Column(name = "REVIEW")
     private String reviewText;
 }

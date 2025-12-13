@@ -52,7 +52,7 @@ public class LibraryController {
         if (isbnString.isEmpty()) {
             return;
         }
-        Long isbn = Long.parseLong(isbnString);
+        long isbn = Long.parseLong(isbnString);
         BookDto selected = bookService.getBookByIsbn(isbn);
 
         if (selected == null) {
@@ -60,11 +60,14 @@ public class LibraryController {
             dialog.display("Error", "This book does not exist");
             return;
         }
-        //TODO: már rajta van, kívánságlistán van
 
-        userBookService.addToLibrary(selected, sessionService.getCurrentUser());
+        boolean save = userBookService.addToLibrary(selected, sessionService.getCurrentUser());
 
         Dialog dialog = new Dialog();
+        if (!save) {
+            dialog.display("Error", "This book is already in your wishlist!");
+        }
+
         dialog.display("Add Book Success", "Book Added Successfully!");
         stageManager.switchToNextScene(FxmlView.LIBRARY);
     }
@@ -84,8 +87,13 @@ public class LibraryController {
     }
 
     @FXML
-    private void onSearchClicked() {
-        stageManager.switchToNextScene(FxmlView.SEARCH);
+    private void onSearchByAuthorTitle() {
+        stageManager.switchToNextScene(FxmlView.SEARCH_BY_NAME);
+    }
+
+    @FXML
+    private void onSearchByCopy() {
+        stageManager.switchToNextScene(FxmlView.SEARCH_BY_COPY);
     }
 
     @FXML

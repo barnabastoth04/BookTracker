@@ -73,6 +73,11 @@ public class LibraryController {
     }
 
     @FXML
+    private void onAddBookClicked() {
+        stageManager.switchToNextScene(FxmlView.BOOK);
+    }
+
+    @FXML
     private void onHomeClicked() {
         stageManager.switchToNextScene(FxmlView.USER);
     }

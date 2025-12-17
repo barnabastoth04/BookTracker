@@ -31,7 +31,7 @@ public class BookService {
     public BookDto addBook(String title, String author, String publisher, Year yearOfPublication, int page,
                            Cover cover, long isbn, String genre, Year firstPublished, String originalTitle,
                            String translator, String illustrator) {
-        if (bookRepository.existsByTitle(title)) {
+        if (bookRepository.existsByIsbn(isbn)) {
             return null;
         }
         Book book = new Book();

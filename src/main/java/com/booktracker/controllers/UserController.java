@@ -6,7 +6,6 @@ import com.booktracker.dtos.UserDto;
 import com.booktracker.services.SessionService;
 import com.booktracker.services.UserService;
 import javafx.fxml.FXML;
-import javafx.scene.control.ContextMenu;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import org.springframework.context.annotation.Lazy;

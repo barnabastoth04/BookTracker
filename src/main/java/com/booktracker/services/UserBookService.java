@@ -26,6 +26,7 @@ public class UserBookService {
     private UserMapper userMapper;
 
     private final UserBookRepository userBookRepository;
+    private final AchievementService achievementService;
 
     public boolean addToWishlist(BookDto bookDto, UserDto userDto) {
         Optional<UserBook> optUserBook = userBookRepository.findUserBookByUserAndBook(userMapper.dtoToEntity(userDto), bookMapper.dtoToEntity(bookDto));
@@ -33,22 +34,19 @@ public class UserBookService {
         UserBook userBook;
         if (optUserBook.isEmpty()) {
             userBook = new UserBook();
+            userBook.setUser(userMapper.dtoToEntity(userDto));
+            userBook.setBook(bookMapper.dtoToEntity(bookDto));
+            userBook.setInWishlist(true);
+            userBook.setRated(false);
         } else {
             userBook = optUserBook.get();
 
             if (userBook.getInWishlist()) {
                 return false;
+            } else {
+                userBook.setInWishlist(true);
             }
         }
-
-        userBook.setUser(userMapper.dtoToEntity(userDto));
-        userBook.setBook(bookMapper.dtoToEntity(bookDto));
-        userBook.setInWishlist(true);
-        userBook.setStartedAt(null);
-        userBook.setFinishedAt(null);
-        userBook.setRated(false);
-        userBook.setStars(0);
-        userBook.setReviewText(null);
 
         userBookRepository.save(userBook);
         return true;
@@ -60,6 +58,10 @@ public class UserBookService {
         UserBook userBook;
         if (optUserBook.isEmpty()) {
             userBook = new UserBook();
+            userBook.setUser(userMapper.dtoToEntity(userDto));
+            userBook.setBook(bookMapper.dtoToEntity(bookDto));
+            userBook.setInWishlist(false);
+            userBook.setRated(false);
         } else {
             userBook = optUserBook.get();
 
@@ -70,15 +72,6 @@ public class UserBookService {
             }
         }
 
-        userBook.setUser(userMapper.dtoToEntity(userDto));
-        userBook.setBook(bookMapper.dtoToEntity(bookDto));
-        userBook.setInWishlist(false);
-        userBook.setStartedAt(null);
-        userBook.setFinishedAt(null);
-        userBook.setRated(false);
-        userBook.setStars(0);
-        userBook.setReviewText(null);
-
         userBookRepository.save(userBook);
         return true;
     }
@@ -88,16 +81,16 @@ public class UserBookService {
 
         UserBook userBook;
         if (optUserBook.isPresent()) {
-            userBook = new UserBook();
-            userBook.setStartedAt(null);
-            userBook.setFinishedAt(null);
-            userBook.setRated(false);
-        } else {
             userBook = optUserBook.get();
+        } else {
+            userBook = new UserBook();
+            userBook.setUser(userMapper.dtoToEntity(userDto));
+            userBook.setBook(bookMapper.dtoToEntity(bookDto));
+            userBook.setInWishlist(false);
+            userBook.setRated(false);
         }
 
-        if (userBook.getStartedAt() == null && userBook.getFinishedAt() == null) {
-            userBook.setBook(bookMapper.dtoToEntity(bookDto));
+        if ((userBook.getStartedAt() == null && userBook.getFinishedAt() == null) || (userBook.getStartedAt() != null && userBook.getFinishedAt() != null)) {
             userBook.setStartedAt(LocalDate.now());
             userBook.setFinishedAt(null);
 
@@ -113,8 +106,9 @@ public class UserBookService {
         if (userBook.isPresent()) {
             if (userBook.get().getStartedAt() != null && userBook.get().getFinishedAt() == null) {
                 userBook.get().setFinishedAt(LocalDate.now());
-
                 userBookRepository.save(userBook.get());
+
+                achievementService.checkAchievements(userMapper.dtoToEntity(userDto));
                 return true;
             }
         }

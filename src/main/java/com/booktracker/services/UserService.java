@@ -63,6 +63,14 @@ public class UserService {
         Optional<User> optUser = userRepository.findByUsername(username);
 
         if (optUser.isPresent()) {
+            List<UserReadingDays> readingDaysOfUser = userReadingDaysRepository.findAllByUser(optUser.get());
+
+            for (UserReadingDays rd : readingDaysOfUser) {
+                if (rd.getDate().equals(date)) {
+                    return false;
+                }
+            }
+
             UserReadingDays readingDays = new UserReadingDays();
             readingDays.setUser(optUser.get());
             readingDays.setDate(date);

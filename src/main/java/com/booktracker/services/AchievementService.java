@@ -1,5 +1,6 @@
 package com.booktracker.services;
 
+import com.booktracker.controllers.Dialog;
 import com.booktracker.dtos.AchievementDto;
 import com.booktracker.dtos.UserDto;
 import com.booktracker.mappers.AchievementMapper;
@@ -34,7 +35,7 @@ public class AchievementService {
         long finishedCount = userBookRepository.countByUserAndFinishedAtIsNotNull(user);
 
         if (finishedCount >= 1) {
-            unlock("FISRT_BOOK", user);
+            unlock("FIRST_BOOK", user);
         }
 
         if (finishedCount >= 5) {
@@ -60,6 +61,8 @@ public class AchievementService {
             ua.setUser(user);
             ua.setAchievement(achievement);
             userAchievementRepository.save(ua);
+            Dialog dialog = new Dialog();
+            dialog.display("Achievement Unlocked", "Congratulations! You have just unlocked a new achievement.");
         }
     }
 

@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
-    boolean existsByTitle(String title);
+    boolean existsByIsbn(Long isbn);
 
     Optional<Book> findByTitle(String title);
 

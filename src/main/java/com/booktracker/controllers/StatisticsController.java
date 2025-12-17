@@ -2,19 +2,13 @@ package com.booktracker.controllers;
 
 import com.booktracker.config.FxmlView;
 import com.booktracker.config.StageManager;
-import com.booktracker.dtos.BookDto;
-import com.booktracker.services.BookService;
 import com.booktracker.services.SessionService;
 import com.booktracker.services.UserBookService;
 import com.booktracker.services.UserService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 @Component
 public class StatisticsController {
@@ -54,7 +48,7 @@ public class StatisticsController {
         bookPerYear.setText("You've read " + books + " books this year so far");
 
         int pages = userBookService.getPagesPerYear(sessionService.getCurrentUser());
-        pagePerYear.setText("You've read " + pages + " page this year so far");
+        pagePerYear.setText("You've read " + pages + " pages this year so far");
     }
 
     @FXML

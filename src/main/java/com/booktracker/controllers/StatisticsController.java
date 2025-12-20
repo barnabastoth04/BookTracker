@@ -42,7 +42,7 @@ public class StatisticsController {
         int days = userService.getDaysPerYear(sessionService.getCurrentUser());
         daysPerYear.setText(String.valueOf(days));
         double percentage = (double) days / 365 * 100;
-        percentageOfYear.setText("(" + percentage + " %)");
+        percentageOfYear.setText(String.format("(%.2f %%)", percentage));
 
         int books = userBookService.getBooksPerYear(sessionService.getCurrentUser());
         bookPerYear.setText("You've read " + books + " books this year so far");

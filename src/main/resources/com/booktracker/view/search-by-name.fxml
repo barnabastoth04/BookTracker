@@ -35,9 +35,10 @@
 
     <center>
         <VBox spacing="15" alignment="TOP_CENTER" style="-fx-padding: 20;">
-            <TextField fx:id="searchField" promptText="Search for books by author or title..." style="-fx-font-size: 16;"/>
+            <TextField fx:id="searchField" promptText="Search for books by author or title..."
+                       style="-fx-font-size: 16;"/>
             <Button text="Search" onAction="#onSearchClicked"
-                    style="-fx-background-color: #004225; -fx-text-fill: #FFFFFF;"/>
+                    style="-fx-background-color: #004225; -fx-text-fill: #FFFFFF; -fx-font-size: 18"/>
             <ListView fx:id="searchResultsListView" style="-fx-padding: 20; -fx-font-size: 14;"/>
         </VBox>
     </center>

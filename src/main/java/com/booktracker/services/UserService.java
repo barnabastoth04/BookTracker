@@ -7,7 +7,6 @@ import com.booktracker.model.UserReadingDays;
 import com.booktracker.repositories.UserReadingDaysRepository;
 import com.booktracker.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -18,9 +17,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class UserService {
-    @Autowired
-    UserMapper userMapper;
-
+    private final UserMapper userMapper;
     private final UserRepository userRepository;
     private final UserReadingDaysRepository userReadingDaysRepository;
 
@@ -56,7 +53,11 @@ public class UserService {
 
     public UserDto signIn(String username) {
         Optional<User> optUser = userRepository.findByUsername(username);
-        return optUser.map(user -> userMapper.entityToDto(user)).orElse(null);
+
+        if (optUser.isPresent()) {
+            return userMapper.entityToDto(optUser.get());
+        }
+        return null;
     }
 
     public boolean saveReading(LocalDate date, String username) {

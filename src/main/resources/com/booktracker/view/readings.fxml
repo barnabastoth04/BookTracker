@@ -34,19 +34,19 @@
     </top>
 
     <center>
-        <VBox>
+        <VBox spacing="15" alignment="TOP_CENTER" style="-fx-padding: 20;">
             <HBox spacing="30" alignment="CENTER" style="-fx-padding: 15;">
                 <Button text="I'm reading this book:" onAction="#onAddNewToRead"
                         style="-fx-background-color: #004225; -fx-text-fill: #FFFFFF;"/>
                 <TextField fx:id="addNewToRead" promptText="Enter isbn"/>
             </HBox>
-            <ListView fx:id="currentlyReadingListView" style="-fx-padding: 20; -fx-background-color: #ADFFA4"/>
+            <ListView fx:id="currentlyReadingListView" style="-fx-padding: 20;"/>
         </VBox>
     </center>
 
     <bottom>
         <HBox spacing="30" alignment="CENTER" style="-fx-padding: 15;">
-            <Button text="I've read this book:" onAction="#onAddToRead"
+            <Button text="I've finished this book:" onAction="#onAddToRead"
                     style="-fx-background-color: #004225; -fx-text-fill: #FFFFFF;"/>
             <TextField fx:id="addToRead" promptText="Enter title"/>
         </HBox>

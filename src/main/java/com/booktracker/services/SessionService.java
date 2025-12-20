@@ -5,7 +5,6 @@ import com.booktracker.mappers.UserMapper;
 import com.booktracker.model.User;
 import com.booktracker.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -13,9 +12,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class SessionService {
-    @Autowired
-    UserMapper userMapper;
-
+    private final UserMapper userMapper;
     private final UserRepository userRepository;
     private static User currentUser;
 

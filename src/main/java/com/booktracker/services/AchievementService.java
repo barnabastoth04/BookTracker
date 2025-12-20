@@ -12,7 +12,6 @@ import com.booktracker.repositories.AchievementRepository;
 import com.booktracker.repositories.UserAchievementRepository;
 import com.booktracker.repositories.UserBookRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -21,12 +20,8 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class AchievementService {
-    @Autowired
-    UserMapper userMapper;
-
-    @Autowired
-    AchievementMapper achievementMapper;
-
+    private final UserMapper userMapper;
+    private final AchievementMapper achievementMapper;
     private final AchievementRepository achievementRepository;
     private final UserAchievementRepository userAchievementRepository;
     private final UserBookRepository userBookRepository;

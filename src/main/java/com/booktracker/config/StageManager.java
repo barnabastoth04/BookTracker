@@ -2,10 +2,12 @@ package com.booktracker.config;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.Objects;
 
 @Component
 public class StageManager {
@@ -21,6 +23,7 @@ public class StageManager {
 
     public void switchScene(FxmlView view) {
         primaryStage.setTitle(applicationTitle);
+        primaryStage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/booktracker/view/backgrounds/stage.png"))));
 
         Parent root = loadRoot(view.getFxmlPath());
         Scene scene = new Scene(root);

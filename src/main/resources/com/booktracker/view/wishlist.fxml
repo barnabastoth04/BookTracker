@@ -5,11 +5,12 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 
+<?import javafx.scene.layout.VBox?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.booktracker.controllers.WishlistController"
             prefHeight="720.0" prefWidth="1280.0"
-            style="-fx-background-color: #ADFFA4">
+            style="-fx-background-image: url('/com/booktracker/view/backgrounds/wishlist.png'); -fx-background-size: cover;">
 
     <top>
         <HBox spacing="30" alignment="CENTER_LEFT" style="-fx-padding: 15; -fx-background-color: #004225;">
@@ -37,7 +38,10 @@
     </top>
 
     <center>
-        <ListView fx:id="wishlistListView" style="-fx-padding: 20; -fx-background-color: #ADFFA4"/>
+        <VBox spacing="15" alignment="TOP_CENTER" style="-fx-padding: 20;">
+            <Label text="Your Wishlist" style="-fx-font-size: 30px; -fx-text-fill: #004225; -fx-font-weight: bold;"/>
+            <ListView fx:id="wishlistListView" style="-fx-padding: 20; -fx-font-size: 14;"/>
+        </VBox>
     </center>
 
     <bottom>
@@ -45,6 +49,10 @@
             <Button text="Add Book To Wishlist" onAction="#onAddToWishlistClicked"
                     style="-fx-background-color: #004225; -fx-text-fill: #FFFFFF;"/>
             <TextField fx:id="addToWishList" promptText="Enter isbn"/>
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Label text="You don't find the book? Please help us!" style="-fx-text-fill: #004225;"/>
+            <Button text="Add Book" onAction="#onAddBookClicked"
+                    style="-fx-background-color: #004225; -fx-text-fill: #FFFFFF;"/>
         </HBox>
     </bottom>
 </BorderPane>

@@ -8,7 +8,6 @@ import com.booktracker.mappers.UserMapper;
 import com.booktracker.model.UserBook;
 import com.booktracker.repositories.UserBookRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -19,12 +18,8 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class UserBookService {
-    @Autowired
-    private BookMapper bookMapper;
-
-    @Autowired
-    private UserMapper userMapper;
-
+    private final BookMapper bookMapper;
+    private final UserMapper userMapper;
     private final UserBookRepository userBookRepository;
     private final AchievementService achievementService;
 

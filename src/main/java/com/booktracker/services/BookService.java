@@ -6,7 +6,6 @@ import com.booktracker.model.Book;
 import com.booktracker.model.Cover;
 import com.booktracker.repositories.BookRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -23,9 +22,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class BookService {
-    @Autowired
-    BookMapper bookMapper;
-
+    private final BookMapper bookMapper;
     private final BookRepository bookRepository;
 
     public BookDto addBook(String title, String author, String publisher, Year yearOfPublication, int page,
@@ -97,7 +94,7 @@ public class BookService {
     }
 
     public List<BookDto> search(String keyword) {
-        if (keyword == null || keyword.isBlank()) {
+        if (keyword.isBlank()) {
             return new ArrayList<>();
         }
 

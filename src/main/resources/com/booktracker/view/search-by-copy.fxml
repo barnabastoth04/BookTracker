@@ -43,14 +43,6 @@
             </HBox>
             <HBox spacing="15" alignment="CENTER" style="-fx-padding: 20;">
                 <VBox>
-                    <VBox>
-                        <Label text="Author:" style="-fx-font-size: 20px; -fx-text-fill: #004225; -fx-font-weight: bold;"/>
-                        <Label fx:id="authorLabel" style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
-                    </VBox>
-                    <VBox>
-                        <Label text="Title:" style="-fx-font-size: 20px; -fx-text-fill: #004225; -fx-font-weight: bold;"/>
-                        <Label fx:id="titleLabel" style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
-                    </VBox>
                     <ImageView fx:id="coverImageView" fitWidth="200" fitHeight="300" preserveRatio="true"/>
                 </VBox>
                 <GridPane hgap="15" vgap="10" style="-fx-padding: 20;">
@@ -63,65 +55,77 @@
                         <ColumnConstraints halignment="RIGHT" minWidth="120"/>
                         <ColumnConstraints halignment="LEFT" minWidth="150"/>
                     </columnConstraints>
-                    <Label text="Publisher:" style="-fx-font-size: 20px; -fx-text-fill: #004225; -fx-font-weight: bold;"
+                    <Label text="Author:" style="-fx-font-size: 20px; -fx-text-fill: #004225; -fx-font-weight: bold;"
                            GridPane.columnIndex="0" GridPane.rowIndex="0"/>
 
-                    <Label fx:id="publisherLabel" style="-fx-font-size: 20px; -fx-text-fill: #004225;"
+                    <Label fx:id="authorLabel" style="-fx-font-size: 20px; -fx-text-fill: #004225;"
                            GridPane.columnIndex="1" GridPane.rowIndex="0"/>
 
-                    <Label text="Year of Publication:" style="-fx-font-size: 20px; -fx-text-fill: #004225; -fx-font-weight: bold;"
+                    <Label text="Title:" style="-fx-font-size: 20px; -fx-text-fill: #004225; -fx-font-weight: bold;"
                            GridPane.columnIndex="2" GridPane.rowIndex="0"/>
 
-                    <Label fx:id="yearOfPublicationLabel" style="-fx-font-size: 20px; -fx-text-fill: #004225;"
+                    <Label fx:id="titleLabel" style="-fx-font-size: 20px; -fx-text-fill: #004225;"
                            GridPane.columnIndex="3" GridPane.rowIndex="0"/>
 
-                    <Label text="Page Number:" style="-fx-font-size: 20px; -fx-text-fill: #004225; -fx-font-weight: bold;"
+                    <Label text="Publisher:" style="-fx-font-size: 20px; -fx-text-fill: #004225; -fx-font-weight: bold;"
                            GridPane.columnIndex="0" GridPane.rowIndex="1"/>
 
-                    <Label fx:id="pageNumberLabel" style="-fx-font-size: 20px; -fx-text-fill: #004225;"
+                    <Label fx:id="publisherLabel" style="-fx-font-size: 20px; -fx-text-fill: #004225;"
                            GridPane.columnIndex="1" GridPane.rowIndex="1"/>
 
-                    <Label text="Cover:" style="-fx-font-size: 20px; -fx-text-fill: #004225; -fx-font-weight: bold;"
+                    <Label text="Year of Publication:" style="-fx-font-size: 20px; -fx-text-fill: #004225; -fx-font-weight: bold;"
                            GridPane.columnIndex="2" GridPane.rowIndex="1"/>
 
-                    <Label fx:id="coverLabel" style="-fx-font-size: 20px; -fx-text-fill: #004225;"
+                    <Label fx:id="yearOfPublicationLabel" style="-fx-font-size: 20px; -fx-text-fill: #004225;"
                            GridPane.columnIndex="3" GridPane.rowIndex="1"/>
 
-                    <Label text="ISBN:" style="-fx-font-size: 20px; -fx-text-fill: #004225; -fx-font-weight: bold;"
+                    <Label text="Page Number:" style="-fx-font-size: 20px; -fx-text-fill: #004225; -fx-font-weight: bold;"
                            GridPane.columnIndex="0" GridPane.rowIndex="2"/>
 
-                    <Label fx:id="isbnLabel" style="-fx-font-size: 20px; -fx-text-fill: #004225;"
+                    <Label fx:id="pageNumberLabel" style="-fx-font-size: 20px; -fx-text-fill: #004225;"
                            GridPane.columnIndex="1" GridPane.rowIndex="2"/>
 
-                    <Label text="Genre:" style="-fx-font-size: 20px; -fx-text-fill: #004225; -fx-font-weight: bold;"
+                    <Label text="Cover:" style="-fx-font-size: 20px; -fx-text-fill: #004225; -fx-font-weight: bold;"
                            GridPane.columnIndex="2" GridPane.rowIndex="2"/>
 
-                    <Label fx:id="genreLabel" style="-fx-font-size: 20px; -fx-text-fill: #004225;"
+                    <Label fx:id="coverLabel" style="-fx-font-size: 20px; -fx-text-fill: #004225;"
                            GridPane.columnIndex="3" GridPane.rowIndex="2"/>
 
-                    <Label text="First Published:" style="-fx-font-size: 20px; -fx-text-fill: #004225; -fx-font-weight: bold;"
+                    <Label text="ISBN:" style="-fx-font-size: 20px; -fx-text-fill: #004225; -fx-font-weight: bold;"
                            GridPane.columnIndex="0" GridPane.rowIndex="3"/>
 
-                    <Label fx:id="firstPublishedLabel" style="-fx-font-size: 20px; -fx-text-fill: #004225;"
+                    <Label fx:id="isbnLabel" style="-fx-font-size: 20px; -fx-text-fill: #004225;"
                            GridPane.columnIndex="1" GridPane.rowIndex="3"/>
 
-                    <Label text="Original Title:" style="-fx-font-size: 20px; -fx-text-fill: #004225; -fx-font-weight: bold;"
+                    <Label text="Genre:" style="-fx-font-size: 20px; -fx-text-fill: #004225; -fx-font-weight: bold;"
                            GridPane.columnIndex="2" GridPane.rowIndex="3"/>
 
-                    <Label fx:id="originalTitleLabel" style="-fx-font-size: 20px; -fx-text-fill: #004225;"
+                    <Label fx:id="genreLabel" style="-fx-font-size: 20px; -fx-text-fill: #004225;"
                            GridPane.columnIndex="3" GridPane.rowIndex="3"/>
 
-                    <Label text="Translator:" style="-fx-font-size: 20px; -fx-text-fill: #004225; -fx-font-weight: bold;"
+                    <Label text="First Published:" style="-fx-font-size: 20px; -fx-text-fill: #004225; -fx-font-weight: bold;"
                            GridPane.columnIndex="0" GridPane.rowIndex="4"/>
 
-                    <Label fx:id="translatorLabel" style="-fx-font-size: 20px; -fx-text-fill: #004225;"
+                    <Label fx:id="firstPublishedLabel" style="-fx-font-size: 20px; -fx-text-fill: #004225;"
                            GridPane.columnIndex="1" GridPane.rowIndex="4"/>
 
-                    <Label text="Illustrator:" style="-fx-font-size: 20px; -fx-text-fill: #004225; -fx-font-weight: bold;"
+                    <Label text="Original Title:" style="-fx-font-size: 20px; -fx-text-fill: #004225; -fx-font-weight: bold;"
                            GridPane.columnIndex="2" GridPane.rowIndex="4"/>
 
-                    <Label fx:id="illustratorLabel" style="-fx-font-size: 20px; -fx-text-fill: #004225;"
+                    <Label fx:id="originalTitleLabel" style="-fx-font-size: 20px; -fx-text-fill: #004225;"
                            GridPane.columnIndex="3" GridPane.rowIndex="4"/>
+
+                    <Label text="Translator:" style="-fx-font-size: 20px; -fx-text-fill: #004225; -fx-font-weight: bold;"
+                           GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+
+                    <Label fx:id="translatorLabel" style="-fx-font-size: 20px; -fx-text-fill: #004225;"
+                           GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+
+                    <Label text="Illustrator:" style="-fx-font-size: 20px; -fx-text-fill: #004225; -fx-font-weight: bold;"
+                           GridPane.columnIndex="2" GridPane.rowIndex="5"/>
+
+                    <Label fx:id="illustratorLabel" style="-fx-font-size: 20px; -fx-text-fill: #004225;"
+                           GridPane.columnIndex="3" GridPane.rowIndex="5"/>
                 </GridPane>
             </HBox>
         </VBox>

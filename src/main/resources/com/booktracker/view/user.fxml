@@ -7,7 +7,7 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.booktracker.controllers.UserController"
             prefHeight="720.0" prefWidth="1280.0"
-            style="-fx-background-color: #ADFFA4">
+            style="-fx-background-image: url('/com/booktracker/view/backgrounds/user.png'); -fx-background-size: cover;">
 
     <top>
         <HBox spacing="30" alignment="CENTER_LEFT" style="-fx-padding: 15; -fx-background-color: #004225;">
@@ -61,19 +61,19 @@
                     <Insets top="20" right="20" bottom="20" left="20"/>
                 </padding>
                 <Label text="Name:" GridPane.rowIndex="0" GridPane.columnIndex="0"
-                       style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
-                <Label fx:id="nameLabel" GridPane.rowIndex="0" GridPane.columnIndex="1"
                        style="-fx-font-size: 20px; -fx-text-fill: #004225; -fx-font-weight: bold;"/>
+                <Label fx:id="nameLabel" GridPane.rowIndex="0" GridPane.columnIndex="1"
+                       style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
 
                 <Label text="Email:" GridPane.rowIndex="1" GridPane.columnIndex="0"
-                       style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
-                <Label fx:id="emailLabel" GridPane.rowIndex="1" GridPane.columnIndex="1"
                        style="-fx-font-size: 20px; -fx-text-fill: #004225; -fx-font-weight: bold;"/>
+                <Label fx:id="emailLabel" GridPane.rowIndex="1" GridPane.columnIndex="1"
+                       style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
 
                 <Label text="Birthdate:" GridPane.rowIndex="2" GridPane.columnIndex="0"
-                       style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
-                <Label fx:id="birthDateLabel" GridPane.rowIndex="2" GridPane.columnIndex="1"
                        style="-fx-font-size: 20px; -fx-text-fill: #004225; -fx-font-weight: bold;"/>
+                <Label fx:id="birthDateLabel" GridPane.rowIndex="2" GridPane.columnIndex="1"
+                       style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
             </GridPane>
 
             <VBox spacing="10" alignment="CENTER_LEFT">

@@ -40,6 +40,12 @@ public class SearchByNameController {
 
         List<BookDto> results = bookService.search(keyword);
 
+        Dialog dialog = new Dialog();
+        if (results.isEmpty()) {
+            dialog.display("Error!", "Book not found!");
+            return;
+        }
+
         searchResultsListView.getItems().setAll(results);
     }
 

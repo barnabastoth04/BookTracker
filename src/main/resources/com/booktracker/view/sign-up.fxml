@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.booktracker.controllers.SignUpController"
+            prefHeight="720.0" prefWidth="1280.0"
+            style="-fx-background-image: url('/com/booktracker/view/backgrounds/signup.png'); -fx-background-size: cover;">
+    <top>
+        <VBox alignment="CENTER" spacing="10">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+            <Label text="Sign Up To Book Tracker"
+                   style="-fx-text-fill: #004225; -fx-font-size: 50px; -fx-font-weight: bold">
+            </Label>
+            <Button text="Return" fx:id="returnButton" onAction="#onReturnClicked"
+                    style="-fx-background-color: #004225; -fx-text-fill: #FFFFFF;"/>
+        </VBox>
+    </top>
+
+    <center>
+        <GridPane alignment="CENTER" hgap="20" vgap="15">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+            <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" prefWidth="150"/>
+                <ColumnConstraints halignment="LEFT" prefWidth="200"/>
+                <ColumnConstraints halignment="RIGHT" prefWidth="150"/>
+                <ColumnConstraints halignment="LEFT" prefWidth="200"/>
+            </columnConstraints>
+
+            <Label text="First Name:" GridPane.rowIndex="0" GridPane.columnIndex="0"
+                   style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
+            <TextField fx:id="firstNameField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+            <Label text="Last Name:" GridPane.rowIndex="0" GridPane.columnIndex="2"
+                   style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
+            <TextField fx:id="lastNameField" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+
+            <Label text="Username:" GridPane.rowIndex="1" GridPane.columnIndex="0"
+                   style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
+            <TextField fx:id="usernameField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+            <Label text="Password:" GridPane.rowIndex="1" GridPane.columnIndex="2"
+                   style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
+            <PasswordField fx:id="passwordField" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+
+            <Label text="Email:" GridPane.rowIndex="2" GridPane.columnIndex="0"
+                   style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
+            <TextField fx:id="emailField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+            <Label text="Gender:" GridPane.rowIndex="2" GridPane.columnIndex="2"
+                   style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
+            <ComboBox fx:id="genderField" GridPane.rowIndex="2" GridPane.columnIndex="3">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Male"/>
+                        <String fx:value="Female"/>
+                        <String fx:value="Other"/>
+                    </FXCollections>
+                </items>
+            </ComboBox>
+
+            <Label text="Birth Date:" GridPane.rowIndex="3" GridPane.columnIndex="0"
+                   style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
+            <DatePicker fx:id="birthDateField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+            <Button text="Sign Up" fx:id="signUpButton" onAction="#onSignUpClicked"
+                    GridPane.rowIndex="3" GridPane.columnIndex="3"
+                    style="-fx-padding: 10px 30px; -fx-font-size: 20px; -fx-background-color: #004225; -fx-text-fill: #FFFFFF;"/>
+        </GridPane>
+    </center>
+
+    <bottom>
+        <HBox spacing="20" alignment="CENTER">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+            <Label text="You already have an account?"
+                   style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
+            <Hyperlink text="Sign in" fx:id="signInLink" onAction="#onSignInLinkClicked"
+                       style="-fx-font-size: 20px"/>
+        </HBox>
+    </bottom>
+</BorderPane>

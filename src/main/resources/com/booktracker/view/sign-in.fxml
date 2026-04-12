@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.booktracker.controllers.SignInController"
+      alignment="CENTER"
+      spacing="20"
+      prefHeight="720.0" prefWidth="1280.0"
+      style="-fx-background-image: url('/com/booktracker/view/backgrounds/signin.png'); -fx-background-size: cover;">
+
+    <Label text="Sign in to Book Tracker"
+           style="-fx-text-fill: #004225; -fx-font-size: 50px; -fx-font-weight: bold"/>
+
+    <Button text="Return" fx:id="returnButton" onAction="#onReturnClicked"
+            style="-fx-background-color: #004225; -fx-text-fill: #FFFFFF;"/>
+
+    <GridPane alignment="CENTER" hgap="20" vgap="15">
+        <padding>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+        </padding>
+        <Label text="Username:" GridPane.rowIndex="0" GridPane.columnIndex="0"
+               style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
+        <TextField fx:id="usernameField"
+                   promptText="Enter username"
+                   GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <Label text="Password:" GridPane.rowIndex="1" GridPane.columnIndex="0"
+               style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
+        <PasswordField fx:id="passwordField"
+                       promptText="Enter password"
+                       GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <Button fx:id="signInButton"
+            text="Sign In"
+            onAction="#onSignInClicked"
+            style="-fx-padding: 10px 30px; -fx-font-size: 18px; -fx-background-color: #004225; -fx-text-fill: #FFFFFF;"/>
+
+    <HBox spacing="20" alignment="CENTER">
+        <padding>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+        </padding>
+        <Label text="You don't have an account yet?"
+               style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
+        <Hyperlink text="Sign up" fx:id="signUpLink" onAction="#onSignUpClicked"
+                   style="-fx-font-size: 20px"/>
+    </HBox>
+</VBox>

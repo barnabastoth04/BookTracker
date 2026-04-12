@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.booktracker.controllers.StatisticsController"
+            prefHeight="720.0" prefWidth="1280.0"
+            style="-fx-background-image: url('/com/booktracker/view/backgrounds/statistic.png'); -fx-background-size: cover;">
+
+    <top>
+        <HBox spacing="30" alignment="CENTER_LEFT" style="-fx-padding: 15; -fx-background-color: #004225;">
+            <Label text="Home" style="-fx-text-fill: white; -fx-font-size: 18;"
+                   onMouseClicked="#onHomeClicked"/>
+            <Label text="Library" style="-fx-text-fill: white; -fx-font-size: 18;"
+                   onMouseClicked="#onLibraryClicked"/>
+            <Label text="Wishlist" style="-fx-text-fill: white; -fx-font-size: 18;"
+                   onMouseClicked="#onWishlistClicked"/>
+            <MenuButton style="-fx-background-color: #004225;">
+                <graphic>
+                    <Label text="Search" style="-fx-text-fill: white; -fx-font-size: 18;"/>
+                </graphic>
+                <items>
+                    <MenuItem text="Search by Author/Title" onAction="#onSearchByAuthorTitle"
+                              style="-fx-text-fill: #004225; -fx-font-size: 15;"/>
+                    <MenuItem text="Search by Copy" onAction="#onSearchByCopy"
+                              style="-fx-text-fill: #004225; -fx-font-size: 15;"/>
+                </items>
+            </MenuButton>
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Button text="Sign Out" onAction="#onSignOutClicked"
+                    style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-font-size: 15;"/>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox spacing="30" alignment="TOP_CENTER" style="-fx-padding: 15;">
+            <Label text="Statistics About Your Reading Habits"
+                   style="-fx-font-size: 30px; -fx-font-weight: bold; -fx-text-fill: #004225;"/>
+            <HBox spacing="30" alignment="CENTER" style="-fx-padding: 15;">
+                <Label text="Days you read:" style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
+                <Label fx:id="daysPerYear" style="-fx-font-size: 20px; -fx-text-fill: #004225; -fx-font-weight: bold;"/>
+                <Label fx:id="percentageOfYear" style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
+            </HBox>
+            <GridPane alignment="CENTER" hgap="20" vgap="15">
+                <padding>
+                    <Insets top="20" right="20" bottom="20" left="20"/>
+                </padding>
+                <Label text="Books read this year:" GridPane.rowIndex="0" GridPane.columnIndex="0"
+                       style="-fx-font-size: 20px; -fx-text-fill: #004225; -fx-font-weight: bold"/>
+                <Label fx:id="bookPerYear" GridPane.rowIndex="0" GridPane.columnIndex="1"
+                       style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
+
+                <Label text="Pages read this year:" GridPane.rowIndex="1" GridPane.columnIndex="0"
+                       style="-fx-font-size: 20px; -fx-text-fill: #004225; -fx-font-weight: bold"/>
+                <Label fx:id="pagePerYear" GridPane.rowIndex="1" GridPane.columnIndex="1"
+                       style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
+            </GridPane>
+        </VBox>
+    </center>
+</BorderPane>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.booktracker.controllers.StartController"
+            prefHeight="720.0" prefWidth="1280.0"
+            style="-fx-background-image: url('/com/booktracker/view/backgrounds/start.png'); -fx-background-size: cover;">
+
+    <center>
+        <VBox alignment="CENTER" spacing="20">
+            <Label fx:id="welcomeLabel"
+                   text="Welcome To Book Tracker!"
+                   style="-fx-font-size: 60px; -fx-font-weight: bold;
+                          -fx-text-fill: #FFFFFF; -fx-effect: dropshadow(three-pass-box, #004225, 15, 0, 0, 0);"/>
+
+            <Label fx:id="subtitleLabel"
+                   text="Take reading to a whole new level with us!"
+                   style="-fx-font-size: 30px; -fx-text-fill: #004225;"/>
+
+            <Label fx:id="descriptionLabel"
+                   text="With an account you'll be able to track your reading habits and experiences."
+                   style="-fx-font-size: 25px; -fx-text-fill: #004225;"/>
+
+            <Button fx:id="signInButton"
+                    text="Sign In"
+                    onAction="#onSignInClicked"
+                    style="-fx-padding: 10px 30px; -fx-font-size: 20px;
+                           -fx-background-color: #004225; -fx-text-fill: #FFFFFF;"/>
+
+            <HBox alignment="CENTER" spacing="1">
+                <Label text="If you don't have an account yet"
+                       style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
+                <Hyperlink fx:id="signUpLink"
+                           text="sign up"
+                           onAction="#onSignUpClicked"
+                           style="-fx-font-size: 20px;"/>
+                <Label text="here" style="-fx-font-size: 20px; -fx-text-fill: #004225;"/>
+            </HBox>
+
+        </VBox>
+    </center>
+</BorderPane>

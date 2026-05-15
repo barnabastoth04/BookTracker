@@ -65,4 +65,14 @@ Users can also indicate whether they read on specific days of a month. This info
 
 Users can unlock achievements and awards by completing specific goals, such as:
 
-* Reading st
+* Reading streaks
+* Number of completed books
+* Pages read milestones
+* Consistent monthly activity
+
+---
+
+# 🎯 Project Goal
+
+The purpose of this project is to motivate readers, help them organize their reading habits, and provide a fun and rewarding experience through statistics and achievements.
+
